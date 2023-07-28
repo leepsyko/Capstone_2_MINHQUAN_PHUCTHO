@@ -1,0 +1,38 @@
+.product {
+  .nav-pills .nav-link.active,
+  .nav-pills .show > .nav-link {
+    background-color: transparent;
+  }
+  .nav-link.active {
+    @include styleText($color-white-1, $fs-3, $fw-400);
+
+    &::after {
+      content: "";
+      margin-top: 5px;
+      height: 2px;
+      width: 100%;
+      background-color: $color-white-1;
+      display: block;
+      transition: all 0.5s;
+    }
+  }
+  .nav-link {
+    display: inline-block;
+    margin-bottom: 5px;
+    @include styleText($color-white-2, $fs-3, $fw-400);
+    &::after {
+      content: "";
+      margin-top: 5px;
+      height: 2px;
+      width: 0;
+      background-color: $color-white-1;
+      display: block;
+      transition: all 0.5s;
+    }
+    &:hover::after,
+    &:hover {
+      width: 100%;
+      color: $color-white-1;
+    }
+  }
+}
