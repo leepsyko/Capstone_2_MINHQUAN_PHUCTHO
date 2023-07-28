@@ -1,0 +1,21 @@
+{
+  "name": "admin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/admin.html",
+    "build": "parcel build src/admin.html --public-url ./"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.3.1",
+    "parcel": "^2.9.3"
+  },
+  "devDependencies": {
+    "buffer": "^6.0.3"
+  }
+}
