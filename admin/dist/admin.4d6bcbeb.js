@@ -577,10 +577,10 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 //======================= Import ======================================
 // import APIs
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _productsAPIJs = require("./../src/services/productsAPI.js");
+var _productsAPI = require("./../src/services/productsAPI");
 // default export
-var _productsJs = require("../src/models/products.js");
-var _productsJsDefault = parcelHelpers.interopDefault(_productsJs);
+var _products = require("../src/models/products");
+var _productsDefault = parcelHelpers.interopDefault(_products);
 // ======utilities======
 function getElement(selector) {
     return document.querySelector(selector);
@@ -589,7 +589,7 @@ function getElement(selector) {
 // display
 function displayProducts(products) {
     let contentHTML = products.reduce((result, value, index)=>{
-        let itemProduct = new (0, _productsJsDefault.default)(value.id, value.name, value.price, value.image, value.type);
+        let itemProduct = new (0, _productsDefault.default)(value.id, value.name, value.price, value.image, value.type);
         return result + `
     <tr>
     <td>${index + 1}</td>
@@ -609,7 +609,7 @@ function displayProducts(products) {
 }
 // Get information
 function getInfoProducts() {
-    _productsAPIJs.apiGetProducts().then((response)=>{
+    _productsAPI.apiGetProducts().then((response)=>{
         console.log(response.data);
         displayProducts(response.data);
     }).catch((error)=>{
@@ -619,6 +619,7 @@ function getInfoProducts() {
 getInfoProducts();
 // Create new Product
 async function createProduct() {
+    console.log("h\xea");
     let product = {
         name: getElement("#TenSP").value,
         price: +getElement("#GiaSP").value,
@@ -626,7 +627,7 @@ async function createProduct() {
         type: getElement("#loaiSP").value
     };
     try {
-        let add = await _productsAPIJs.apiCreateProduct(product);
+        let add = await _productsAPI.apiCreateProduct(product);
         console.log("hello");
     } catch (error) {
         console.log(error);
@@ -658,11 +659,50 @@ getElement("#btnThemSP").onclick = ()=>{
     getElement(".modal-title").innerHTML = "Th\xeam sản ph\xe2̉m ";
     getElement(".modal-footer").innerHTML = `
   <button class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-    <button class="btn btn-success" onclick="createProduct()">Thêm</button>
+    <button class="btn btn-success" id="addProduct" onclick="createProduct()">Thêm</button>
       `;
 };
+getElement("#btnThemSP").onclick = (event)=>{
+    console.log(event.target);
+    getElement(".modal-title").innerHTML = "Th\xeam sản ph\xe2̉m ";
+    getElement(".modal-footer").innerHTML = `
+  <button class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+    <button class="btn btn-success" id="add">Thêm</button>
+      `;
+    getElement("#add").onclick = createProduct;
+};
 
-},{"./../src/services/productsAPI.js":"6IbPt","../src/models/products.js":"bFaSR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6IbPt":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./../src/services/productsAPI":"6IbPt","../src/models/products":"bFaSR"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"6IbPt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // API get data of whole products
@@ -713,37 +753,7 @@ function apiDeleteProduct(productId1) {
     });
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","axios":"jo6P5"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"jo6P5":[function(require,module,exports) {
+},{"axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jo6P5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "default", ()=>(0, _axiosJsDefault.default));

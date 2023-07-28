@@ -1,9 +1,9 @@
 //======================= Import ======================================
 // import APIs
-import * as apiMethod from "./../src/services/productsAPI.js";
+import * as apiMethod from "./../src/services/productsAPI";
 
 // default export
-import consObject from "../src/models/products.js";
+import consObject from "../src/models/products";
 
 // ======utilities======
 function getElement(selector) {
@@ -63,7 +63,9 @@ function getInfoProducts() {
 getInfoProducts();
 
 // Create new Product
+
 async function createProduct() {
+  console.log("hê");
   let product = {
     name: getElement("#TenSP").value,
     price: +getElement("#GiaSP").value,
@@ -72,7 +74,7 @@ async function createProduct() {
   };
   try {
     let add = await apiMethod.apiCreateProduct(product);
-    console.log("hello")
+    console.log("hello");
   } catch (error) {
     console.log(error);
   }
@@ -114,6 +116,16 @@ getElement("#btnThemSP").onclick = () => {
   getElement(".modal-title").innerHTML = "Thêm sản phẩm ";
   getElement(".modal-footer").innerHTML = `
   <button class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-    <button class="btn btn-success" onclick="createProduct()">Thêm</button>
+    <button class="btn btn-success" id="addProduct" onclick="createProduct()">Thêm</button>
       `;
+};
+getElement("#btnThemSP").onclick = (event) => {
+  console.log(event.target);
+  getElement(".modal-title").innerHTML = "Thêm sản phẩm ";
+  getElement(".modal-footer").innerHTML = `
+  <button class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+    <button class="btn btn-success" id="add">Thêm</button>
+      `;
+  getElement("#add").onclick = createProduct
+  
 };
