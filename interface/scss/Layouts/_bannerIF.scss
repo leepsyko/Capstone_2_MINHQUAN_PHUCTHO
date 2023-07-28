@@ -1,0 +1,23 @@
+.banner {
+  .catename {
+    display: block;
+  }
+  .banner-img {
+    .carousel-inner {
+      img {
+        object-fit: cover;
+        object-position: top;
+        height: 400px;
+        width: 80%;
+        border-radius: 20px;
+      }
+    }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: $color-dark-1;
+      border-radius: 50%;
+      padding: 20px;
+      text-align: center;
+    }
+  }
+}

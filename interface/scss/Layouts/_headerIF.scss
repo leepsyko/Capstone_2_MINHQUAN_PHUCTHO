@@ -1,0 +1,10 @@
+header {
+  background-color: $color-dark-1;
+  .navbar-brand {
+    @include styleText($color-white-1, $fs-7, $fw-600);
+
+    &:hover {
+      color: $color-white-1;
+    }
+  }
+}

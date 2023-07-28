@@ -1,0 +1,26 @@
+.buttonProduct {
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.buttonSearch {
+  @extend .buttonProduct;
+  transition: all 0.5s;
+  @include styleButton($color-bg-gray-3, $color-white-1, none);
+  &:hover {
+    background-color: $color-bg-gray-hover;
+  }
+}
+
+.buttonProduct-cart {
+  @extend .buttonProduct;
+  margin-left: 10px;
+  transition: all 0.5s;
+  @include styleButton($color-bg-gray-3, $color-white-1, none);
+  &:hover {
+    background-color: $color-bg-gray-hover;
+  }
+}
