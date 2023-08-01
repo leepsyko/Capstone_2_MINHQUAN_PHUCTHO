@@ -589,24 +589,65 @@ function getElement(selector) {
 // display
 function displayProducts(products) {
     let contentHTML = products.reduce((result, value, index)=>{
-        let itemProduct = new (0, _productsDefault.default)(value.id, value.name, value.price, value.image, value.type);
+        let itemProduct = new (0, _productsDefault.default)(value.id, value.name, value.price, value.screen, value.backCamera, value.frontCamera, value.img, value.desc, value.type);
         return result + `
     <tr>
     <td>${index + 1}</td>
     <td>${itemProduct.name}</td>
     <td>${itemProduct.price}</td>
+    <td>${itemProduct.desc} <br> Camerasau: ${itemProduct.backCamera} <br> Camera trước: ${itemProduct.frontCamera} <br> Kích thước màn hình: ${itemProduct.screen} </td>
     <td><img src="${itemProduct.image}" width="100px" height="100px"></td>
     <td>${itemProduct.type}</td>
     <td>
-    <button class="btn btn-primary" onclick="selectProduct(${itemProduct.id})">Xem</button>
+    <button class="btn btn-primary" data-id="${itemProduct.id}" data-type="xem">Xem</button>
     </td>
     <td>
-    <button class="btn btn-primary" onclick="deleteProduct(${itemProduct.id})">Xoá</button>
+    <button class="btn btn-primary deletePro" data-id="${itemProduct.id}" data-type="xoa" >Xoá</button>
     </td>
     </tr>`;
     }, " ");
+    // getElement(".deletePro").onclick = (event) =>{
+    //   console.log(event.target)
+    // }
     document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
 }
+// backup
+// function displayProducts(products) {
+//   let contentHTML = products.reduce((result, value, index) => {
+//     let itemProduct = new consObject(
+//       value.id,
+//       value.name,
+//       value.price,
+//       value.image,
+//       value.type
+//     );
+//     return (
+//       result +
+//       `
+//     <tr>
+//     <td>${index + 1}</td>
+//     <td>${itemProduct.name}</td>
+//     <td>${itemProduct.price}</td>
+//     <td><img src="${itemProduct.image}" width="100px" height="100px"></td>
+//     <td>${itemProduct.type}</td>
+//     <td>
+//     <button class="btn btn-primary" onclick="selectProduct(${
+//       itemProduct.id
+//     })">Xem</button>
+//     </td>
+//     <td>
+//     <button class="btn btn-primary" class="deletePro" onclick="deleteProduct(${
+//       itemProduct.id
+//     })">Xoá</button>
+//     </td>
+//     </tr>`
+//     );
+//   }, " ");
+//   document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
+//   // getElement(".deletePro").onclick = (event) => {
+//   //   console.log(event.target)
+//   // }
+// }
 // Get information
 function getInfoProducts() {
     _productsAPI.apiGetProducts().then((response)=>{
@@ -623,12 +664,83 @@ async function createProduct() {
     let product = {
         name: getElement("#TenSP").value,
         price: +getElement("#GiaSP").value,
+        screen: +getElement("#ManHinhSP").value,
+        backCamera: +getElement("#CameraBSP").value,
+        frontCamera: +getElement("#CameraASP").value,
         image: getElement("#HinhSP").value,
+        desc: getElement("#ThongtinSP").value,
         type: getElement("#loaiSP").value
     };
     try {
-        let add = await _productsAPI.apiCreateProduct(product);
-        console.log("hello");
+        await _productsAPI.apiCreateProduct(product);
+        getInfoProducts();
+    } catch (error) {
+        console.log(error);
+    }
+    $("#myModal").modal("hide");
+}
+// Áp dụng kĩ thuật even delegation
+getElement("#tblDanhSachSP").onclick = (event)=>{
+    let element = event.target;
+    let idButton = element.getAttribute("data-id");
+    let typeButton = element.getAttribute("data-type");
+    if (typeButton === "xoa") deleteProduct(idButton);
+    else if (typeButton === "xem") showProduct(idButton);
+};
+// Delete
+async function deleteProduct(id) {
+    try {
+        await _productsAPI.apiDeleteProduct(id);
+        getInfoProducts();
+    } catch (error) {
+        console.log(error);
+    }
+}
+// Show a Product
+async function showProduct(id) {
+    $("#myModal").modal("show");
+    getElement(".modal-title").innerHTML = "C\xe2̣p nh\xe2̣t sản ph\xe2̉m";
+    getElement(".modal-footer").innerHTML = `
+  <button class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
+    <button class="btn btn-success" id="upDate" data-id="${id}">Cập nhật</button>
+      `;
+    try {
+        let product = await (await _productsAPI.apiGetProductByID(id)).data;
+        getElement("#TenSP").value = product.name;
+        getElement("#GiaSP").value = product.price;
+        getElement("#ManHinhSP").value = product.screen;
+        getElement("#CameraBSP").value = product.backCamera;
+        getElement("#CameraASP").value = product.frontCamera;
+        getElement("#HinhSP").value = product.img;
+        getElement("#ThongtinSP").value = product.desc;
+        getElement("#loaiSP").value = product.type;
+        console.log(product.type);
+    } catch (error) {
+        console.log(error);
+    }
+    // event delegation with upDate function
+    getElement("#upDate").onclick = (event)=>{
+        upDateProduct(event.target.getAttribute("data-id"));
+    };
+}
+// upDate product information
+async function upDateProduct(id) {
+    let newProduct = {
+        name: getElement("#TenSP").value,
+        price: +getElement("#GiaSP").value,
+        screen: +getElement("#ManHinhSP").value,
+        backCamera: +getElement("#CameraBSP").value,
+        frontCamera: +getElement("#CameraASP").value,
+        image: getElement("#HinhSP").value,
+        desc: getElement("#ThongtinSP").value,
+        type: getElement("#loaiSP").value
+    };
+    try {
+        console.log("ddaau laf update");
+        await _productsAPI.apiUpdateProduct(id, newProduct);
+        getInfoProducts();
+        // hide modal popUp
+        $("#myModal").modal("hide");
     } catch (error) {
         console.log(error);
     }
@@ -654,55 +766,35 @@ function validate() {
         getElement(".form-group").insertAfter(spanSubtitle1, getElement("#TenSP"));
     }
 }
+// reset form 
+function resetForm() {
+    getElement("#TenSP").value = "";
+    getElement("#GiaSP").value = "";
+    getElement("#ManHinhSP").value = "";
+    getElement("#CameraBSP").value = "";
+    getElement("#CameraASP").value = "";
+    getElement("#HinhSP").value = "";
+    getElement("#ThongtinSP").value = "";
+    getElement("#loaiSP").value = "";
+}
 //===================DOM==================
 getElement("#btnThemSP").onclick = ()=>{
-    getElement(".modal-title").innerHTML = "Th\xeam sản ph\xe2̉m ";
-    getElement(".modal-footer").innerHTML = `
-  <button class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
-    <button class="btn btn-success" id="addProduct" onclick="createProduct()">Thêm</button>
-      `;
-};
-getElement("#btnThemSP").onclick = (event)=>{
-    console.log(event.target);
+    resetForm();
     getElement(".modal-title").innerHTML = "Th\xeam sản ph\xe2̉m ";
     getElement(".modal-footer").innerHTML = `
   <button class="btn btn-secondary" data-dismiss="modal">Huỷ</button>
     <button class="btn btn-success" id="add">Thêm</button>
       `;
     getElement("#add").onclick = createProduct;
-};
+}; // onclick for delete
+ // getElement(".deletePro").onclick = (event) =>{
+ //   console.log(event.target)
+ // }
+ //  getElement(".deletePro").onclick = (event) =>{
+ //     console.log(event.target)
+ //   }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./../src/services/productsAPI":"6IbPt","../src/models/products":"bFaSR"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"6IbPt":[function(require,module,exports) {
+},{"./../src/services/productsAPI":"6IbPt","../src/models/products":"bFaSR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6IbPt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // API get data of whole products
@@ -726,7 +818,7 @@ function apiGetProducts(searchValue) {
         }
     });
 }
-function apiGetProductByID() {
+function apiGetProductByID(productId) {
     return (0, _axiosDefault.default)({
         url: `https://64a6ad22096b3f0fcc8043cf.mockapi.io/products/${productId}`,
         method: "GET"
@@ -739,16 +831,16 @@ function apiCreateProduct(product) {
         data: product
     });
 }
-function apiUpdateProduct(productId1, newProduct) {
+function apiUpdateProduct(productId, newProduct) {
     return (0, _axiosDefault.default)({
-        url: `https://64a6ad22096b3f0fcc8043cf.mockapi.io/products/${productId1}`,
+        url: `https://64a6ad22096b3f0fcc8043cf.mockapi.io/products/${productId}`,
         method: "PUT",
         data: newProduct
     });
 }
-function apiDeleteProduct(productId1) {
+function apiDeleteProduct(productId) {
     return (0, _axiosDefault.default)({
-        url: `https://64a6ad22096b3f0fcc8043cf.mockapi.io/products/${productId1}`,
+        url: `https://64a6ad22096b3f0fcc8043cf.mockapi.io/products/${productId}`,
         method: "DELETE"
     });
 }
@@ -1430,7 +1522,37 @@ function bind(fn, thisArg) {
     };
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cpqD8":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"cpqD8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _utilsJs = require("./../utils.js");
@@ -5083,11 +5205,15 @@ exports.default = HttpStatusCode;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class Products {
-    constructor(id, name, price, image, type){
+    constructor(id, name, price, screen, backCamera, frontCamera, image, desc, type){
         this.id = id;
         this.name = name;
         this.price = price;
+        this.screen = screen;
+        this.backCamera = backCamera;
+        this.frontCamera = frontCamera;
         this.image = image;
+        this.desc = desc;
         this.type = type;
     }
 }

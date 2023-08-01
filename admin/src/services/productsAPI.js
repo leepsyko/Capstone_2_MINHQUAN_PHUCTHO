@@ -17,7 +17,7 @@ export function apiGetProducts(searchValue) {
 
 // API get data of a product
 
-export function apiGetProductByID(){
+export function apiGetProductByID(productId){
     return axios({
         url: `https://64a6ad22096b3f0fcc8043cf.mockapi.io/products/${productId}`,
         method: "GET"
