@@ -11,16 +11,16 @@
 }
 
 @mixin responsive($screen) {
-  @if (map-has-key($map: $breakpoints, $key: $screen)) {
+  @if (map-has-key($map: $breakpoint, $key: $screen)) {
     $value: map-get(
-      $map: $breakpoints,
+      $map: $breakpoint,
       $key: $screen,
     );
     @media screen and (min-width: $value) {
       @content;
     }
   }
-  else {
+  @else {
     @warn "`{$screen}` isn't in breakpoint";
   }
 }

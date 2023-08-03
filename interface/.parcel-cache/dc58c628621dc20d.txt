@@ -1,4 +1,4 @@
-6250
+6251
 102E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\csso\lib\restructure\7-mergeRuleset.js133355184164366451 0
 71E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\timsort133355184161418199 1
 122E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\features\justify-content-space-evenly.js133355184170166319 0
@@ -47,10 +47,10 @@
 124E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\cjs\_class_static_private_field_destructure.cjs133355184163397569 0
 80E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\readdirp\LICENSE133355206672860533 0
 81E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@msgpackr-extract133355206676820918 1
-69E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\src\interface.html133355216616979201 0
+69E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\src\interface.html133355292045798193 0
 121E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\csso\node_modules\css-tree\cjs\tokenizer\adopt-buffer.cjs133355184160150805 0
 90E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\svgo\plugins\reusePaths.js133355184164676529 0
-55E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist133355226394689144 1
+55E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist133355298790640833 1
 106E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\lib\pseudo-selectors\filters.js133355184161834601 0
 121E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\optimizer-htmlnano\node_modules\svgo\lib\style.js133355184164956552 0
 110E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\lmdb\node_modules\node-addon-api\noexcept.gypi133355184160805698 0
@@ -64,7 +64,7 @@
 115E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@babel\highlight\node_modules\has-flag\package.json133355184159743600 0
 109E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\posthtml\node_modules\posthtml-parser\license133355184159743600 0
 115E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\features\native-filesystem-api.js133355184170816887 0
-63E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Layouts133355153065953654 1
+63E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Layouts133355296366169705 1
 137E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\optimizer-htmlnano\node_modules\css-tree\lib\syntax\config\mix.js133355184165376729 0
 92E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\ordered-binary\tests\test.js133355184161259702 0
 106E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\csso\node_modules\css-tree\dist\version.js133355184168045541 0
@@ -75,10 +75,6 @@
 115E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\features\css-placeholder-shown.js133355184167399942 0
 130E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\optimizer-svgo\node_modules\svgo\plugins\removeComments.js133355184164023094 0
 63E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules133355206676820918 1
-74E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\fs133355184162472484 1
-95E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\regions\RW.js133355184171356046 0
-98E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\utility-types\dist\mapped-types.js133355184160873106 0
-68E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\csso133355184165610966 1
 70E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@lezer133355184151743319 1
 104E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\lmdb\dependencies\v8\v8-fast-api-calls.h133355184165985710 0
 98E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\sass\types\logger\source_span.d.ts133355206676751157 0
@@ -90,6 +86,8 @@
 137E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\esm\generated\decode-data-xml.js.map133355184163397569 0
 54E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\src133355213957079784 1
 97E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\semver\functions\compare-build.js133355184161307313 0
+77E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Layouts\_modalIF.scss133355297700309679 0
+135E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\esm\generated\decode-data-xml.d.ts133355184164603070 0
 116E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@babel\highlight\node_modules\color-convert\route.js133355184161271798 0
 80E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-what\LICENSE133355184159658185 0
 86E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\type-fest\package.json133355184159969542 0
@@ -110,7 +108,7 @@
 58E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\src\css133355153065923282 1
 91E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\htmlparser2\lib\Parser.d.ts133355184162291940 0
 95E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\regions\LV.js133355184170456888 0
-80E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Layouts\_productsIF.scss133355226244982005 0
+80E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Layouts\_productsIF.scss133355295546047454 0
 133E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\esm\generated\encode-html.js.map133355184163814859 0
 103E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\csso\node_modules\mdn-data\CHANGELOG.md133355184163347743 0
 89E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\semver\functions\parse.js133355184163387603 0
@@ -131,7 +129,7 @@
 97E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\core\lib\public\Bundle.js133355184163745793 0
 94E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\mdn-data\css\types.schema.json133355184163164365 0
 123E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\_\_class_check_private_static_field_descriptor133355184168805706 1
-70E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\src\js\interface.js133355203739321703 0
+70E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\src\js\interface.js133355298793432131 0
 83E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\callsites\readme.md133355184160816057 0
 104E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\features\hashchange.js133355184169667088 0
 94E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\update-browserslist-db\LICENSE133355184159678120 0
@@ -167,9 +165,9 @@
 118E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\csso\node_modules\css-tree\lib\syntax\atrule\import.js133355184167006553 0
 97E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\source-map-js\lib\mapping-list.js133355184161095520 0
 63E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Helpers133350084767564074 1
-70E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\interface.scss133355210847068712 0
+70E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\interface.scss133355296766131617 0
 101E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\utility-types\dist\utility-types.d.ts133355184162637278 0
-78E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Layouts\_bannerIF.scss133355222693139743 0
+78E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Layouts\_bannerIF.scss133355245795082133 0
 95E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\regions\TH.js133355184171794030 0
 134E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\optimizer-htmlnano\node_modules\mdn-data\css\types.schema.json133355184163129332 0
 100E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\node-addon-api\napi-inl.deprecated.h133355184160980172 0
@@ -183,8 +181,8 @@
 83E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\type-fest\readme.md133355184160474225 0
 88E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\is-arrayish\package.json133355184159658185 0
 104E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\utility-types\dist\aliases-and-guards.js133355184160059765 0
-77E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Helpers\_mixinIF.scss133355172239882938 0
-81E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Helpers\_variablesIF.scss133350084767564074 0
+77E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Helpers\_mixinIF.scss133355245616537077 0
+81E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\scss\Helpers\_variablesIF.scss133355285442597554 0
 111E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\esm\_object_destructuring_empty.js133355184167325291 0
 70E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\buffer133355191597993765 1
 85E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\browserslist\index.js133355184160942448 0
@@ -379,6 +377,10 @@
 113E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\source-map\dist\wasm-bindings-web.js.flow133355184160942448 0
 72E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-what133355184162566696 1
 100E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\utility-types\dist\mapped-types.d.ts133355184162566696 0
+74E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\fs133355184162472484 1
+95E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\regions\RW.js133355184171356046 0
+98E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\utility-types\dist\mapped-types.js133355184160873106 0
+68E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\csso133355184165610966 1
 78E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\delayed-stream133355185017342688 1
 105E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\features\input-range.js133355184170015111 0
 88E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\xxhash-wasm\package.json133355184160826322 0
@@ -998,9 +1000,9 @@
 113E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\src\_is_native_reflect_construct.mjs133355184170236653 0
 89E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\utils\src\hash.js133355184163291027 0
 94E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-what\lib\commonjs\types.js133355184161616139 0
+111E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\esm\_class_apply_descriptor_get.js133355184165939949 0
 87E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\csso\cjs\clean\Rule.cjs133355184163507204 0
 84E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\msgpackr\SECURITY.md133355184164592055 0
-111E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\esm\_class_apply_descriptor_get.js133355184165939949 0
 85E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\svgo\lib\svgo-node.js133355184164815918 0
 120E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\domutils\lib\esm\manipulation.js133355184161779961 0
 91E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\type-fest\source\entry.d.ts133355184162125787 0
@@ -1204,7 +1206,7 @@
 73E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\lmdb\dist133355184166354848 1
 94E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\src\_inherits.mjs133355184170186598 0
 105E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\lib\_class_name_tdz_error.js133355184166179693 0
-72E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\css\interface.css.map133355226246383720 0
+72E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\css\interface.css.map133355273249147666 0
 111E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\features\custom-elementsv1.js133355184168079053 0
 96E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@mischnic\json-sourcemap\LICENSE133355184159711868 0
 103E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\features\css-table.js133355184167734975 0
@@ -1394,7 +1396,6 @@
 96E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\_\_jsx\package.json133355184169470411 0
 90E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\nth-check\lib\index.js.map133355184162340625 0
 86E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\svgo\lib\svgo\tools.js133355184165090832 0
-91E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\sass\types\value\index.d.ts133355206676673656 0
 76E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\mdn-data\css133355184163367686 1
 89E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\svgo\dist\svgo.browser.js133355184165040908 0
 89E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\supports-color\browser.js133355184159969542 0
@@ -1623,6 +1624,7 @@
 129E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\esm\generated\encode-html.js133355184161975930 0
 96E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@swc\helpers\cjs\_instanceof.cjs133355184164324795 0
 93E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\sass\types\value\boolean.d.ts133355206676590322 0
+91E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\sass\types\value\index.d.ts133355206676673656 0
 104E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\csso\node_modules\css-tree\cjs\generator133355184165843707 1
 90E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\sass\types\value\list.d.ts133355206676688343 0
 89E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\namer-default\src133355184160317964 1
@@ -2059,7 +2061,7 @@
 118E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\README.md133355184166410102 0
 125E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\optimizer-svgo\node_modules\csso\lib\replace\Value.js133355184164346520 0
 82E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\domelementtype\lib133355184161744033 1
-70E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.html133355226394689144 0
+70E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.html133355292039069884 0
 135E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\msgpackr-extract\node_modules\.bin\node-gyp-build-optional-packages.cmd133355184178109805 0
 103E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\packager-svg\lib\SVGPackager.js133355184160086956 0
 77E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\msgpackr\dist133355184164426254 1
@@ -3636,7 +3638,7 @@
 106E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\readme.md133355184164446191 0
 90E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\fs\src\MemoryFS.js133355184161463266 0
 112E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\decode.d.ts133355184164663586 0
-82E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.f0bf8216.css.map133355226394345556 0
+82E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.f0bf8216.css.map133355297698977579 0
 102E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\domhandler\lib133355184162353137 1
 85E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\utils\LICENSE133355184160200208 0
 110E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\decode.js133355184161735813 0
@@ -3691,7 +3693,6 @@
 136E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\esm\generated\decode-data-html.d.ts133355184164547059 0
 100E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\features\run-in.js133355184171356046 0
 138E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\esm\generated\decode-data-html.js.map133355184163195091 0
-135E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\esm\generated\decode-data-xml.d.ts133355184164603070 0
 139E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\esm\generated\decode-data-xml.d.ts.map133355184163300957 0
 135E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\css-select\node_modules\entities\lib\esm\generated\encode-html.d.ts.map133355184163673721 0
 108E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\features\css-namespaces.js133355184167202130 0
@@ -3898,11 +3899,11 @@
 93E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\cosmiconfig\dist\index.js.map133355184163174794 0
 97E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\cosmiconfig\dist\loaders.d.ts.map133355184163229796 0
 95E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\cosmiconfig\dist\loaders.js.map133355184163300957 0
-77E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.c48be17d.js133355226394529658 0
+77E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.c48be17d.js133355298790598397 0
 97E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\@parcel\workers\lib\WorkerFarm.js133355184163839996 0
 94E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\cosmiconfig\dist\readFile.d.ts133355184164012189 0
 95E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\regions\NU.js133355184170871729 0
-81E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.c48be17d.js.map133355226394549621 0
+81E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.c48be17d.js.map133355298790629919 0
 98E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\cosmiconfig\dist\readFile.d.ts.map133355184163347743 0
 91E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\caniuse-lite\data\agents.js133355184162069625 0
 91E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\cosmiconfig\dist\types.d.ts133355184164047854 0
@@ -6247,5 +6248,5 @@
 77E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\.bin\sass.ps1133355206676800985 0
 75E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\.bin\semver133355184178099838 0
 95E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\node_modules\.bin\update-browserslist-db.ps1133355184178109805 0
-78E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.f0bf8216.css133355226394311007 0
-68E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\css\interface.css133355226246383720 0
+78E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\dist\interface.f0bf8216.css133355297698967611 0
+68E:\CAPSTONE2\Capstone_2_MINHQUAN_PHUCTHO\interface\css\interface.css133355273249147666 0

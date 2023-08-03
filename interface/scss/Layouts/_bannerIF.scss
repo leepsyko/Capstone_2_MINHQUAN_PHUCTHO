@@ -11,17 +11,17 @@
         width: 80%;
         border-radius: 20px;
 
-        // @include responsive("large") {
-        //   width: 50%;
-        // }
+        @include responsive("large") {
+          width: 50%;
+        }
 
-        // @include responsive("small") {
-        //   width: 30%;
-        // }
+        @include responsive("small") {
+          width: 30%;
+        }
 
-        // @include responsive("small") {
-        //   width: 15%;
-        // }
+        @include responsive("small") {
+          width: 15%;
+        }
       }
     }
     .carousel-control-prev-icon,

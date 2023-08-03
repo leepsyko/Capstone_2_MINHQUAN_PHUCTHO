@@ -74,6 +74,21 @@ header .navbar-brand:focus {
   width: 80%;
   border-radius: 20px;
 }
+@media screen and (min-width: 992px) {
+  .banner .banner-img .carousel-inner img {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 576px) {
+  .banner .banner-img .carousel-inner img {
+    width: 30%;
+  }
+}
+@media screen and (min-width: 576px) {
+  .banner .banner-img .carousel-inner img {
+    width: 15%;
+  }
+}
 .banner .banner-img .carousel-control-prev-icon,
 .banner .banner-img .carousel-control-next-icon {
   background-color: #101010;
@@ -124,7 +139,28 @@ header .navbar-brand:focus {
   width: 100%;
   color: #fff;
 }
-.product .pills-tab-home .list-product .product-item img {
-  width: 100px;
+.product #list-product .product-item {
+  background-color: #323232;
+  margin-top: 20px;
+}
+.product #list-product .product-item-img img {
+  display: block;
+  max-width: 235px;
+  width: 100%;
+  height: auto;
+  margin: auto;
+}
+.product #list-product .product-item-name h5 {
+  padding: 0 10px;
+  margin: 12px 0;
+  line-height: 20px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.product #list-product .product-item-name h3 {
   height: 100px;
+  color: #fff;
+  font-size: 1.25px;
+  font-weight: 600;
 }/*# sourceMappingURL=interface.css.map */
