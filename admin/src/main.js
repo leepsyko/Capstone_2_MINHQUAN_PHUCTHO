@@ -13,6 +13,7 @@ function getElement(selector) {
 // ====================== Global function================================
 // display
 function displayProducts(products) {
+  console.log(products);
   let contentHTML = products.reduce((result, value, index) => {
     let itemProduct = new consObject(
       value.id,
@@ -24,7 +25,7 @@ function displayProducts(products) {
       value.img,
       value.desc,
       value.type
-    );
+      );
     return (
       result +
       `
@@ -37,7 +38,7 @@ function displayProducts(products) {
       } <br> Camera trước: ${
         itemProduct.frontCamera
       } <br> Kích thước màn hình: ${itemProduct.screen} </td>
-    <td><img src="${itemProduct.image}" width="100px" height="100px"></td>
+    <td><img src="${itemProduct.img}" width="100px" height="100px"></td>
     <td>${itemProduct.type}</td>
     <td>
     <button class="btn btn-primary" data-id="${
@@ -53,58 +54,17 @@ function displayProducts(products) {
     );
   }, " ");
 
-  // getElement(".deletePro").onclick = (event) =>{
-  //   console.log(event.target)
-  // }
   document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
 }
 
-// backup
-// function displayProducts(products) {
-//   let contentHTML = products.reduce((result, value, index) => {
-//     let itemProduct = new consObject(
-//       value.id,
-//       value.name,
-//       value.price,
-//       value.image,
-//       value.type
-//     );
-//     return (
-//       result +
-//       `
-//     <tr>
-//     <td>${index + 1}</td>
-//     <td>${itemProduct.name}</td>
-//     <td>${itemProduct.price}</td>
-//     <td><img src="${itemProduct.image}" width="100px" height="100px"></td>
-//     <td>${itemProduct.type}</td>
-//     <td>
-//     <button class="btn btn-primary" onclick="selectProduct(${
-//       itemProduct.id
-//     })">Xem</button>
-//     </td>
-//     <td>
-//     <button class="btn btn-primary" class="deletePro" onclick="deleteProduct(${
-//       itemProduct.id
-//     })">Xoá</button>
-//     </td>
-//     </tr>`
-//     );
-//   }, " ");
 
-//   document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
 
-//   // getElement(".deletePro").onclick = (event) => {
-//   //   console.log(event.target)
-//   // }
-// }
 
 // Get information
 function getInfoProducts() {
   apiMethod
     .apiGetProducts()
     .then((response) => {
-      console.log(response.data);
       displayProducts(response.data);
     })
     .catch((error) => {
@@ -118,12 +78,14 @@ getInfoProducts();
 
 async function createProduct() {
   console.log("hê");
- let product = validate()
+  let product = validate();
 
- if(!product){
-  console.log("vào lỗi")
-  return
- }
+  console.log(product.img);
+
+  if (!product) {
+    console.log("vào lỗi");
+    return;
+  }
 
   // let product = {
   //   name: getElement("#TenSP").value,
@@ -195,37 +157,33 @@ async function showProduct(id) {
   }
 
   // event delegation with upDate function
-getElement("#upDate").onclick = (event)=>{
-  upDateProduct(event.target.getAttribute("data-id"))
-
-}
-
+  getElement("#upDate").onclick = (event) => {
+    upDateProduct(event.target.getAttribute("data-id"));
+  };
 }
 
 // upDate product information
 async function upDateProduct(id) {
-
   let newProduct = {
     name: getElement("#TenSP").value,
     price: +getElement("#GiaSP").value,
     screen: +getElement("#ManHinhSP").value,
     backCamera: +getElement("#CameraBSP").value,
     frontCamera: +getElement("#CameraASP").value,
-    image: getElement("#HinhSP").value,
+    img: getElement("#HinhSP").value,
     desc: getElement("#ThongtinSP").value,
     type: getElement("#loaiSP").value,
   };
   try {
-    console.log("ddaau laf update")
-    await apiMethod.apiUpdateProduct(id,newProduct);
+    console.log("ddaau laf update");
+    await apiMethod.apiUpdateProduct(id, newProduct);
     getInfoProducts();
-     // hide modal popUp
-  $("#myModal").modal("hide");
+    // hide modal popUp
+    $("#myModal").modal("hide");
   } catch (error) {
     console.log(error);
   }
 }
-
 
 // ----------validate check information from form
 
@@ -239,7 +197,6 @@ function isRequired(value) {
 
 function validate() {
   let isValid = true;
-
 
   // dom
   let nameForm = getElement("#TenSP").value;
@@ -257,8 +214,6 @@ function validate() {
     getElement("#spanName").innerHTML = "Không được để trống";
   }
 
-
-
   if (isValid) {
     let product = {
       name: getElement("#TenSP").value,
@@ -266,18 +221,17 @@ function validate() {
       screen: +getElement("#ManHinhSP").value,
       backCamera: +getElement("#CameraBSP").value,
       frontCamera: +getElement("#CameraASP").value,
-      image: getElement("#HinhSP").value,
+      img: getElement("#HinhSP").value,
       desc: getElement("#ThongtinSP").value,
       type: getElement("#loaiSP").value,
     };
-    return product
-
+    return product;
   }
 
-  return isValid
+  return isValid;
 }
 
-// reset form 
+// reset form
 
 function resetForm() {
   getElement("#TenSP").value = "";
