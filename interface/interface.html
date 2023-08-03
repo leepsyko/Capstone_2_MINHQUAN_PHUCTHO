@@ -63,13 +63,42 @@
               <button class="buttonSearch">
                 <span><i class="fa-solid fa-magnifying-glass"></i></span>
               </button>
-              <button class="buttonProduct-cart" type="submit">
+              <button
+                class="buttonProduct-cart"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight"
+              >
                 <span id="cart"><i class="fa-solid fa-cart-shopping"></i></span>
               </button>
             </form>
           </div>
         </div>
       </nav>
+
+      <!-- Off canvas -->
+      <div
+        class="offcanvas offcanvas-end bg-dark"
+        tabindex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title text-white fs-2" id="offcanvasRightLabel">
+            Product
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="offcanvas-body text-white">Nội dung mua hàng làm sau</div>
+      </div>
     </header>
     <main>
       <!-- BANNER -->
@@ -107,9 +136,8 @@
               data-bs-target="#carouselExample"
               data-bs-slide="prev"
             >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
+              <span class="carousel-control-prev-icon" aria-hidden="true"
+                ><i class="fa-solid fa-chevron-left"></i
               ></span>
               <span class="visually-hidden">Previous</span>
             </button>
@@ -119,9 +147,8 @@
               data-bs-target="#carouselExample"
               data-bs-slide="next"
             >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
+              <span class="carousel-control-next-icon" aria-hidden="true"
+                ><i class="fa-solid fa-chevron-right"></i
               ></span>
               <span class="visually-hidden">Next</span>
             </button>
@@ -182,7 +209,12 @@
               role="tabpanel"
               aria-labelledby="pills-home-tab"
               tabindex="0"
-            ></div>
+            >
+              <div
+                class="row justify-content-center align-items-center"
+                id="list-product"
+              ></div>
+            </div>
             <div
               class="tab-pane fade"
               id="pills-profile"
@@ -223,6 +255,8 @@
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Main js -->
+    <script src="../admin/src/models/Products.js"></script>
+    <script src="../admin/src/services/productsAPI.js"></script>
     <script type="module" src="./js/interface.js"></script>
   </body>
 </html>

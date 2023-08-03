@@ -9,6 +9,7 @@ body {
   font-size: 16px;
   font-family: Helvetica, sans-serif;
   background-color: #3e3e3f;
+  color: #fff;
 }
 
 .buttonProduct, .buttonProduct-cart, .buttonSearch {
@@ -40,6 +41,12 @@ body {
   background-color: #5e5e60;
 }
 
+.offcanvas-header .btn-close {
+  background: none;
+  color: #fff;
+  font-size: 2rem;
+}
+
 header {
   background-color: #101010;
 }
@@ -68,8 +75,12 @@ header .navbar-brand:hover {
 .banner .banner-img .carousel-control-next-icon {
   background-color: #101010;
   border-radius: 50%;
-  padding: 20px;
-  text-align: center;
+  width: 50px;
+  height: 50px;
+  background-image: none;
+  background-color: #323232;
+  line-height: 50px;
+  transition: all 0.5s;
 }
 
 .product .nav-pills .nav-link.active,
