@@ -661,16 +661,21 @@ getInfoProducts();
 // Create new Product
 async function createProduct() {
     console.log("h\xea");
-    let product = {
-        name: getElement("#TenSP").value,
-        price: +getElement("#GiaSP").value,
-        screen: +getElement("#ManHinhSP").value,
-        backCamera: +getElement("#CameraBSP").value,
-        frontCamera: +getElement("#CameraASP").value,
-        image: getElement("#HinhSP").value,
-        desc: getElement("#ThongtinSP").value,
-        type: getElement("#loaiSP").value
-    };
+    let product = validate();
+    if (!product) {
+        console.log("vào l\xf4̃i");
+        return;
+    }
+    // let product = {
+    //   name: getElement("#TenSP").value,
+    //   price: +getElement("#GiaSP").value,
+    //   screen: +getElement("#ManHinhSP").value,
+    //   backCamera: +getElement("#CameraBSP").value,
+    //   frontCamera: +getElement("#CameraASP").value,
+    //   image: getElement("#HinhSP").value,
+    //   desc: getElement("#ThongtinSP").value,
+    //   type: getElement("#loaiSP").value,
+    // };
     try {
         await _productsAPI.apiCreateProduct(product);
         getInfoProducts();
@@ -748,23 +753,39 @@ async function upDateProduct(id) {
 // ----------validate check information from form
 function isRequired(value) {
     // Check empty of input
-    if (!value.trim) return false;
+    if (!value.trim()) return false;
     return true;
 }
 function validate() {
     let isValid = true;
-    let spanSubtitle1 = document.createElement("span").textContent = "Kh\xf4ng được đ\xeả tr\xf4́ng";
-    let spanSubtitle2 = document.createElement("span").textContent = "Kh\xf4ng hợp l\xeạ";
     // dom
     let nameForm = getElement("#TenSP").value;
     let priceForm = +getElement("#GiaSP").value;
-    let image = getElement("HinhSP").value;
-    let typeForm = getElement("loaiSP").value;
+    let screenForm = getElement("#ManHinhSP").value;
+    let cameraBSPForm = getElement("#CameraBSP").value;
+    let cameraASPForm = getElement("#CameraASP").value;
+    let imageForm = getElement("#HinhSP").value;
+    let infoForm = getElement("#ThongtinSP").value;
+    let typeForm = getElement("#loaiSP").value;
     // Name of product
     if (!isRequired(nameForm)) {
         isValid = false;
-        getElement(".form-group").insertAfter(spanSubtitle1, getElement("#TenSP"));
+        getElement("#spanName").innerHTML = "Kh\xf4ng được đ\xeả tr\xf4́ng";
     }
+    if (isValid) {
+        let product = {
+            name: getElement("#TenSP").value,
+            price: +getElement("#GiaSP").value,
+            screen: +getElement("#ManHinhSP").value,
+            backCamera: +getElement("#CameraBSP").value,
+            frontCamera: +getElement("#CameraASP").value,
+            image: getElement("#HinhSP").value,
+            desc: getElement("#ThongtinSP").value,
+            type: getElement("#loaiSP").value
+        };
+        return product;
+    }
+    return isValid;
 }
 // reset form 
 function resetForm() {

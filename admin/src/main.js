@@ -118,16 +118,23 @@ getInfoProducts();
 
 async function createProduct() {
   console.log("hê");
-  let product = {
-    name: getElement("#TenSP").value,
-    price: +getElement("#GiaSP").value,
-    screen: +getElement("#ManHinhSP").value,
-    backCamera: +getElement("#CameraBSP").value,
-    frontCamera: +getElement("#CameraASP").value,
-    image: getElement("#HinhSP").value,
-    desc: getElement("#ThongtinSP").value,
-    type: getElement("#loaiSP").value,
-  };
+ let product = validate()
+
+ if(!product){
+  console.log("vào lỗi")
+  return
+ }
+
+  // let product = {
+  //   name: getElement("#TenSP").value,
+  //   price: +getElement("#GiaSP").value,
+  //   screen: +getElement("#ManHinhSP").value,
+  //   backCamera: +getElement("#CameraBSP").value,
+  //   frontCamera: +getElement("#CameraASP").value,
+  //   image: getElement("#HinhSP").value,
+  //   desc: getElement("#ThongtinSP").value,
+  //   type: getElement("#loaiSP").value,
+  // };
   try {
     await apiMethod.apiCreateProduct(product);
     getInfoProducts();
@@ -224,7 +231,7 @@ async function upDateProduct(id) {
 
 function isRequired(value) {
   // Check empty of input
-  if (!value.trim) {
+  if (!value.trim()) {
     return false;
   }
   return true;
@@ -233,22 +240,41 @@ function isRequired(value) {
 function validate() {
   let isValid = true;
 
-  let spanSubtitle1 = (document.createElement("span").textContent =
-    "Không được để trống");
-  let spanSubtitle2 = (document.createElement("span").textContent =
-    "Không hợp lệ");
 
   // dom
   let nameForm = getElement("#TenSP").value;
   let priceForm = +getElement("#GiaSP").value;
-  let image = getElement("HinhSP").value;
-  let typeForm = getElement("loaiSP").value;
+  let screenForm = getElement("#ManHinhSP").value;
+  let cameraBSPForm = getElement("#CameraBSP").value;
+  let cameraASPForm = getElement("#CameraASP").value;
+  let imageForm = getElement("#HinhSP").value;
+  let infoForm = getElement("#ThongtinSP").value;
+  let typeForm = getElement("#loaiSP").value;
 
   // Name of product
   if (!isRequired(nameForm)) {
     isValid = false;
-    getElement(".form-group").insertAfter(spanSubtitle1, getElement("#TenSP"));
+    getElement("#spanName").innerHTML = "Không được để trống";
   }
+
+
+
+  if (isValid) {
+    let product = {
+      name: getElement("#TenSP").value,
+      price: +getElement("#GiaSP").value,
+      screen: +getElement("#ManHinhSP").value,
+      backCamera: +getElement("#CameraBSP").value,
+      frontCamera: +getElement("#CameraASP").value,
+      image: getElement("#HinhSP").value,
+      desc: getElement("#ThongtinSP").value,
+      type: getElement("#loaiSP").value,
+    };
+    return product
+
+  }
+
+  return isValid
 }
 
 // reset form 
