@@ -1,10 +1,10 @@
 //======================= Import ======================================
 // import APIs
-import * as apiMethod from "./../src/services/productsAPI";
+import * as apiMethod from "../../../admin/src/services/productsAPI";
 
 // default export
-import consObject from "../src/models/products";
-
+import consObject from "../../../admin/src/models/Products";
+getInfoProducts();
 // ======utilities======
 function getElement(selector) {
   return document.querySelector(selector);
@@ -46,5 +46,5 @@ function displayProducts(products) {
       `
     );
   }, " ");
-  document.getElementById("list-product").innerHTML = contentHTML;
+  document.getElementById("pills-home").innerHTML = contentHTML;
 }
