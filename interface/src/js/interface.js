@@ -4,12 +4,15 @@ import * as apiMethod from "../../../admin/src/services/productsAPI";
 
 // default export
 import consObject from "../../../admin/src/models/Products";
-getInfoProducts();
+
 // ======utilities======
 function getElement(selector) {
   return document.querySelector(selector);
 }
+
 // ====================== Global function================================
+
+getInfoProducts();
 
 // Get information
 function getInfoProducts() {
@@ -26,25 +29,32 @@ function getInfoProducts() {
 
 // display
 function displayProducts(products) {
-  let contentHTML = products.reduce((result, value) => {
+  let contentHTML = products.reduce((result, value, index) => {
     let itemProduct = new consObject(
       value.id,
       value.name,
       value.price,
-      value.image,
+      value.screen,
+      value.backCamera,
+      value.frontCamera,
+      value.img,
+      value.desc,
       value.type
     );
     return (
       result +
       `
-        <div class="col-4 product-item">
-            <div product-img>
-                <img src"${products.image}" alt="phone"/>
-            </div>
-            <div class="product-name">${products.name}</div>
+      <div class="col-4">
+        <div class="product-item">
+        <img src="${itemProduct.image}" alt="">
         </div>
+      </div>
       `
     );
   }, " ");
-  document.getElementById("pills-home").innerHTML = contentHTML;
+
+  // getElement(".deletePro").onclick = (event) =>{
+  //   console.log(event.target)
+  // }
+  document.getElementById("list-product").innerHTML = contentHTML;
 }

@@ -35,4 +35,17 @@
       color: $color-white-1;
     }
   }
-}
+
+  // Tab content
+    pills-home {
+      .list-product {
+        .product-item {
+          img {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+  }
+
