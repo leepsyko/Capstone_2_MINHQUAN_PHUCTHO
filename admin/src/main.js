@@ -38,7 +38,8 @@ function displayProducts(products) {
       } <br> Camera trước: ${
         itemProduct.frontCamera
       } <br> Kích thước màn hình: ${itemProduct.screen} </td>
-    <td><img src="${itemProduct.img}" width="100px" height="100px"></td>
+    <td>
+    <img src="${itemProduct.img}" width="100px" height="100px"></td>
     <td>${itemProduct.type}</td>
     <td>
     <button class="btn btn-primary" data-id="${
