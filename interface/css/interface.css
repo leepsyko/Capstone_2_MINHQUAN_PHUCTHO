@@ -124,8 +124,7 @@ header .navbar-brand:focus {
   width: 100%;
   color: #fff;
 }
-.product pills-home .list-product .product-item img {
-  width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+.product .pills-tab-home .list-product .product-item img {
+  width: 100px;
+  height: 100px;
 }/*# sourceMappingURL=interface.css.map */
