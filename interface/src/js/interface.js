@@ -56,7 +56,7 @@ function displayProducts(products) {
             <h5>${itemProduct.desc}</h5>
           </div>
           <div class="product-item-price">
-            <h4>${itemProduct.price}</h4>
+            <h4>${itemProduct.price} VND</h4>
           </div>
           <div>
             <button class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Info</button>
