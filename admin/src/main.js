@@ -188,6 +188,7 @@ async function upDateProduct(id) {
 
 // ----------validate check information from form
 
+// check input is empty
 function isRequired(value) {
   // Check empty of input
   if (!value.trim()) {
@@ -196,12 +197,24 @@ function isRequired(value) {
   return true;
 }
 
+// check character is number
+
+function isNumber(value) {
+  
+  if (isNaN(value)) {
+    return false
+  }
+
+  return true
+}
+
+
 function validate() {
   let isValid = true;
 
   // dom
   let nameForm = getElement("#TenSP").value;
-  let priceForm = +getElement("#GiaSP").value;
+  let priceForm = getElement("#GiaSP").value;
   let screenForm = getElement("#ManHinhSP").value;
   let cameraBSPForm = getElement("#CameraBSP").value;
   let cameraASPForm = getElement("#CameraASP").value;
@@ -213,6 +226,44 @@ function validate() {
   if (!isRequired(nameForm)) {
     isValid = false;
     getElement("#spanName").innerHTML = "Không được để trống";
+  }
+  // Price of product
+  if (!isRequired(priceForm)) {
+    isValid = false;
+    getElement("#spanPass").innerHTML = "Không được để trống";
+  }
+  // Screen of product
+  if (!isRequired(screenForm)) {
+    isValid = false;
+    getElement("#spanScreen").innerHTML = "Không được để trống";
+  }else if (!isNumber(screenForm)) {
+    isValid = false;
+    getElement("#spanScreen").innerHTML = "Nhập vào một số";
+  }
+  // BSP of product
+  if (!isRequired(cameraBSPForm)) {
+    isValid = false;
+    getElement("#spanBSP").innerHTML = "Không được để trống";
+  }
+  // ASP of product
+  if (!isRequired(cameraASPForm)) {
+    isValid = false;
+    getElement("#spanASP").innerHTML = "Không được để trống";
+  }
+  // Image of product
+  if (!isRequired(imageForm)) {
+    isValid = false;
+    getElement("#spanHinh").innerHTML = "Không được để trống";
+  }
+  // Info of product
+  if (!isRequired(infoForm)) {
+    isValid = false;
+    getElement("#spanInfor").innerHTML = "Không được để trống";
+  }
+  // Type of product
+  if (!isRequired(typeForm)) {
+    isValid = false;
+    getElement("#spanType").innerHTML = "Không được để trống";
   }
 
   if (isValid) {
@@ -231,6 +282,11 @@ function validate() {
 
   return isValid;
 }
+
+
+
+
+
 
 // reset form
 
