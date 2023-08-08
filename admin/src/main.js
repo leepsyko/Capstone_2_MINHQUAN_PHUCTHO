@@ -325,7 +325,7 @@ getElement("#basic-addon2").onclick = () => {
 
   try {
     apiMethod.apiGetProducts().then((response) => {
-       let products = response.data;
+      let products = response.data;
       let newListName = products.filter((value) => {
         let nameProducts = value.name.trim().toLowerCase();
         return nameProducts.includes(keyName);
@@ -339,6 +339,29 @@ getElement("#basic-addon2").onclick = () => {
 };
 
 // sort product by price
-getElement("#filterByPrice").onchange = () =>{
-  
-}
+getElement("#filterByPrice").onchange = (event) => {
+  function lowHigh(a, b) {
+    // hàm để sử dụng sắp xếp số
+    return a.price - b.price;
+  }
+  function highLow(a, b) {
+    // hàm để sử dụng sắp xếp số
+    return b.price - a.price;
+  }
+  let newListProducts = [];
+  try {
+    apiMethod.apiGetProducts().then((response) => {
+      let products = response.data;
+      if (event.target.value === "high") {
+        newListProducts = products.sort(highLow);
+      } else if (event.target.value === "low") {
+        newListProducts = products.sort(lowHigh);
+      }else{
+        newListProducts = products
+      }
+      displayProducts(newListProducts);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
