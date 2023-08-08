@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Capstone_2</title>
+    <!-- FontAwesome 6.2.0 CSS -->
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -74,7 +80,7 @@
         <!--Danh sách sản phẩm -->
         <div role="tabpanel" class="tab-pane in active" id="DanhSachSP">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-5">
               <!-- BEGIN BUTTOM THÊM MỚI -->
               <button
                 id="btnThemSP"
@@ -86,7 +92,17 @@
               </button>
               <!-- END BUTTON THÊM MỚI -->
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 d-flex justify-content-end  align-items-center">
+              <div>
+                <label for="filterByPrice" >Lọc sản phẩm</label>
+                <select name="giá" id="filterByPrice">
+                  <option value="" selected>Mặc định</option>
+                  <option value="hight">Từ cao đến thấp</option>
+                  <option value="low">Từ thấp đến cao</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-3">
               <!-- BEGIN TÌM KIẾM -->
               <div class="input-group mb-3">
                 <input type="text" id="txtSearch" class="form-control"
@@ -107,7 +123,7 @@
               <thead>
                 <th>STT</th>
                 <th>Tên Sản Phẩm</th>
-                <th>Giá</th>
+                <th>Giá </th>
                 <th>Thông tin</th>
                 <th>Hình Ảnh</th>
                 <th>Loại sản phẩm</th>

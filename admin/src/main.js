@@ -25,7 +25,7 @@ function displayProducts(products) {
       value.img,
       value.desc,
       value.type
-      );
+    );
     return (
       result +
       `
@@ -58,9 +58,6 @@ function displayProducts(products) {
   document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
 }
 
-
-
-
 // Get information
 function getInfoProducts() {
   apiMethod
@@ -88,16 +85,6 @@ async function createProduct() {
     return;
   }
 
-  // let product = {
-  //   name: getElement("#TenSP").value,
-  //   price: +getElement("#GiaSP").value,
-  //   screen: +getElement("#ManHinhSP").value,
-  //   backCamera: +getElement("#CameraBSP").value,
-  //   frontCamera: +getElement("#CameraASP").value,
-  //   image: getElement("#HinhSP").value,
-  //   desc: getElement("#ThongtinSP").value,
-  //   type: getElement("#loaiSP").value,
-  // };
   try {
     await apiMethod.apiCreateProduct(product);
     getInfoProducts();
@@ -200,14 +187,12 @@ function isRequired(value) {
 // check character is number
 
 function isNumber(value) {
-  
   if (isNaN(value)) {
-    return false
+    return false;
   }
 
-  return true
+  return true;
 }
-
 
 function validate() {
   let isValid = true;
@@ -226,44 +211,69 @@ function validate() {
   if (!isRequired(nameForm)) {
     isValid = false;
     getElement("#spanName").innerHTML = "Không được để trống";
+  } else {
+    getElement("#spanName").innerHTML = "";
   }
   // Price of product
   if (!isRequired(priceForm)) {
     isValid = false;
     getElement("#spanPass").innerHTML = "Không được để trống";
+  } else if (!isNumber(priceForm)) {
+    isValid = false;
+    getElement("#spanPass").innerHTML = "Nhập vào một số";
+  } else {
+    getElement("#spanPass").innerHTML = "";
   }
   // Screen of product
   if (!isRequired(screenForm)) {
     isValid = false;
     getElement("#spanScreen").innerHTML = "Không được để trống";
-  }else if (!isNumber(screenForm)) {
+  } else if (!isNumber(screenForm)) {
     isValid = false;
     getElement("#spanScreen").innerHTML = "Nhập vào một số";
+  } else {
+    getElement("#spanScreen").innerHTML = "";
   }
   // BSP of product
   if (!isRequired(cameraBSPForm)) {
     isValid = false;
     getElement("#spanBSP").innerHTML = "Không được để trống";
+  } else if (!isNumber(cameraBSPForm)) {
+    isValid = false;
+    getElement("#spanBSP").innerHTML = "Nhập vào một số";
+  } else {
+    getElement("#spanBSP").innerHTML = "";
   }
   // ASP of product
   if (!isRequired(cameraASPForm)) {
     isValid = false;
     getElement("#spanASP").innerHTML = "Không được để trống";
+  } else if (!isNumber(cameraASPForm)) {
+    isValid = false;
+    getElement("#spanASP").innerHTML = "Nhập vào một số";
+  } else {
+    getElement("#spanASP").innerHTML = "";
   }
   // Image of product
   if (!isRequired(imageForm)) {
     isValid = false;
     getElement("#spanHinh").innerHTML = "Không được để trống";
+  } else {
+    getElement("#spanHinh").innerHTML = "";
   }
   // Info of product
   if (!isRequired(infoForm)) {
     isValid = false;
     getElement("#spanInfor").innerHTML = "Không được để trống";
+  } else {
+    getElement("#spanInfor").innerHTML = "";
   }
   // Type of product
   if (!isRequired(typeForm)) {
     isValid = false;
     getElement("#spanType").innerHTML = "Không được để trống";
+  } else {
+    getElement("#spanType").innerHTML = "";
   }
 
   if (isValid) {
@@ -282,11 +292,6 @@ function validate() {
 
   return isValid;
 }
-
-
-
-
-
 
 // reset form
 
@@ -313,11 +318,27 @@ getElement("#btnThemSP").onclick = () => {
   getElement("#add").onclick = createProduct;
 };
 
-// onclick for delete
-// getElement(".deletePro").onclick = (event) =>{
-//   console.log(event.target)
-// }
+// button search name product
+getElement("#basic-addon2").onclick = () => {
+  let keyName = getElement("#txtSearch").value;
+  keyName = keyName.trim().toLowerCase();
 
-//  getElement(".deletePro").onclick = (event) =>{
-//     console.log(event.target)
-//   }
+  try {
+    apiMethod.apiGetProducts().then((response) => {
+       let products = response.data;
+      let newListName = products.filter((value) => {
+        let nameProducts = value.name.trim().toLowerCase();
+        return nameProducts.includes(keyName);
+      });
+
+      displayProducts(newListName);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// sort product by price
+getElement("#filterByPrice").onchange = () =>{
+  
+}
