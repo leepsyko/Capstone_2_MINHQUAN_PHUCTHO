@@ -13,7 +13,6 @@ function getElement(selector) {
 // ====================== Global function================================
 // display
 function displayProducts(products) {
-  console.log(products);
   let contentHTML = products.reduce((result, value, index) => {
     let itemProduct = new consObject(
       value.id,
@@ -75,13 +74,11 @@ getInfoProducts();
 // Create new Product
 
 async function createProduct() {
-  console.log("hê");
   let product = validate();
 
-  console.log(product.img);
+  console.log("product")
 
   if (!product) {
-    console.log("vào lỗi");
     return;
   }
 
@@ -119,6 +116,7 @@ async function deleteProduct(id) {
 
 // Show a Product
 async function showProduct(id) {
+  resetForm()
   $("#myModal").modal("show");
 
   getElement(".modal-title").innerHTML = "Cập nhật sản phẩm";
@@ -139,7 +137,7 @@ async function showProduct(id) {
     getElement("#ThongtinSP").value = product.desc;
     getElement("#loaiSP").value = product.type;
 
-    console.log(product.type);
+    // console.log(product.type);
   } catch (error) {
     console.log(error);
   }
@@ -152,18 +150,26 @@ async function showProduct(id) {
 
 // upDate product information
 async function upDateProduct(id) {
-  let newProduct = {
-    name: getElement("#TenSP").value,
-    price: +getElement("#GiaSP").value,
-    screen: +getElement("#ManHinhSP").value,
-    backCamera: +getElement("#CameraBSP").value,
-    frontCamera: +getElement("#CameraASP").value,
-    img: getElement("#HinhSP").value,
-    desc: getElement("#ThongtinSP").value,
-    type: getElement("#loaiSP").value,
-  };
+
+  let newProduct = validate();
+
+
+  if (!newProduct) {
+    console.log("vào lỗi");
+    return;
+  }
+
+  // let newProduct = {
+  //   name: getElement("#TenSP").value,
+  //   price: +getElement("#GiaSP").value,
+  //   screen: +getElement("#ManHinhSP").value,
+  //   backCamera: +getElement("#CameraBSP").value,
+  //   frontCamera: +getElement("#CameraASP").value,
+  //   img: getElement("#HinhSP").value,
+  //   desc: getElement("#ThongtinSP").value,
+  //   type: getElement("#loaiSP").value,
+  // };
   try {
-    console.log("ddaau laf update");
     await apiMethod.apiUpdateProduct(id, newProduct);
     getInfoProducts();
     // hide modal popUp
@@ -196,7 +202,7 @@ function isNumber(value) {
 
 function validate() {
   let isValid = true;
-
+console.log("Vào lỗi của validate")
   // dom
   let nameForm = getElement("#TenSP").value;
   let priceForm = getElement("#GiaSP").value;
@@ -217,12 +223,12 @@ function validate() {
   // Price of product
   if (!isRequired(priceForm)) {
     isValid = false;
-    getElement("#spanPass").innerHTML = "Không được để trống";
+    getElement("#spanPrice").innerHTML = "Không được để trống";
   } else if (!isNumber(priceForm)) {
     isValid = false;
-    getElement("#spanPass").innerHTML = "Nhập vào một số";
+    getElement("#spanPrice").innerHTML = "Nhập vào một số";
   } else {
-    getElement("#spanPass").innerHTML = "";
+    getElement("#spanPrice").innerHTML = "";
   }
   // Screen of product
   if (!isRequired(screenForm)) {
@@ -296,6 +302,16 @@ function validate() {
 // reset form
 
 function resetForm() {
+
+  getElement("#spanName").innerHTML = ""
+  getElement("#spanPrice").innerHTML = ""
+  getElement("#spanScreen").innerHTML = "";
+  getElement("#spanBSP").innerHTML = "";
+  getElement("#spanASP").innerHTML = "";
+  getElement("#spanHinh").innerHTML = "";
+  getElement("#spanInfor").innerHTML = "";
+  getElement("#spanType").innerHTML = "";
+
   getElement("#TenSP").value = "";
   getElement("#GiaSP").value = "";
   getElement("#ManHinhSP").value = "";
