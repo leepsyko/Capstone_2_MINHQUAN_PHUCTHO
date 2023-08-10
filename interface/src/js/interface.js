@@ -116,8 +116,8 @@ export function displayProducts(products) {
   }, " ");
 
   document.getElementById("list-product").innerHTML = contentHTML;
-  let productStorangeJson = localStorage.getItem("productsJson");
-  let productsOb = JSON.parse(productStorangeJson);
+  let productStoreJson = localStorage.getItem("productsJson");
+  let productsOb = JSON.parse(productStoreJson);
   getElements(".addCartProduct").forEach((element) => {
     element.onclick = (event) => {
       const target = event.target;
@@ -170,8 +170,8 @@ export function displayProducts(products) {
 }
 
 getElement(".offcanvas-body").onclick = (event) => {
-  let productStorangeJson = localStorage.getItem("productsJson");
-  let productsOb = JSON.parse(productStorangeJson);
+  let productStoreJson = localStorage.getItem("productsJson");
+  let productsOb = JSON.parse(productStoreJson);
   const target = event.target;
   let id = target.getAttribute("id");
   let idData = target.getAttribute("data-id");
