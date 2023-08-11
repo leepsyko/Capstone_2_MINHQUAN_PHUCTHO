@@ -175,13 +175,15 @@ getElement(".offcanvas-body").onclick = (event) => {
   const target = event.target;
   let id = target.getAttribute("id");
   let idData = target.getAttribute("data-id");
-  getElement(`#plusButton-${idData}`).addEventListener("click", (event) => {
-    let b = Number(event.target.getAttribute("data-index2"));
-    console.log(b);
-    carts[b].quantity++;
-    carts[b].price = carts[b].quantity * productsOb[b].price;
-    reLoadCart();
-  });
+  let dataIndex = document
+    .getElementById(`plusButton-${idData}`)
+    .getAttribute("data-index2");
+
+  carts[dataIndex].quantity++;
+  carts[dataIndex].price =
+    carts[dataIndex].quantity * productsOb[dataIndex].price;
+
+  reLoadCart()
 };
 
 function reLoadCart() {
