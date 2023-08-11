@@ -176,7 +176,8 @@ getElement(".offcanvas-body").onclick = (event) => {
   let id = target.getAttribute("id");
   let idData = target.getAttribute("data-id");
   getElement(`#plusButton-${idData}`).addEventListener("click", (event) => {
-    let b = event.target.getAttribute("data-index2");
+    let b = Number(event.target.getAttribute("data-index2"));
+    console.log(b);
     carts[b].quantity++;
     carts[b].price = carts[b].quantity * productsOb[b].price;
     reLoadCart();
