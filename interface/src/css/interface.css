@@ -1,0 +1,123 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-size: 16px;
+  font-family: Helvetica, sans-serif;
+  background-color: #3e3e3f;
+  color: #fff;
+}
+
+.buttonProduct, .buttonProduct-cart, .buttonSearch {
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.buttonSearch {
+  transition: all 0.5s;
+  color: #fff;
+  background-color: #2f3033;
+  border: none;
+}
+.buttonSearch:hover {
+  background-color: #5e5e60;
+}
+
+.buttonProduct-cart {
+  margin-left: 10px;
+  transition: all 0.5s;
+  color: #fff;
+  background-color: #2f3033;
+  border: none;
+}
+.buttonProduct-cart:hover {
+  background-color: #5e5e60;
+}
+
+.offcanvas-header .btn-close {
+  background: none;
+  color: #fff;
+  font-size: 2rem;
+}
+
+header {
+  background-color: #101010;
+}
+header .navbar-brand {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+}
+header .navbar-brand:hover {
+  color: #fff;
+}
+
+.banner .catename {
+  display: block;
+}
+.banner .banner-img .carousel-inner img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+  height: 400px;
+  width: 80%;
+  border-radius: 20px;
+}
+.banner .banner-img .carousel-control-prev-icon,
+.banner .banner-img .carousel-control-next-icon {
+  background-color: #101010;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-image: none;
+  background-color: #323232;
+  line-height: 50px;
+  transition: all 0.5s;
+}
+
+.product .nav-pills .nav-link.active,
+.product .nav-pills .show > .nav-link {
+  background-color: transparent;
+}
+.product .nav-link.active {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.product .nav-link.active::after {
+  content: "";
+  margin-top: 5px;
+  height: 2px;
+  width: 100%;
+  background-color: #fff;
+  display: block;
+  transition: all 0.5s;
+}
+.product .nav-link {
+  display: inline-block;
+  margin-bottom: 5px;
+  color: #afb7bd;
+  font-size: 1rem;
+  font-weight: 400;
+}
+.product .nav-link::after {
+  content: "";
+  margin-top: 5px;
+  height: 2px;
+  width: 0;
+  background-color: #fff;
+  display: block;
+  transition: all 0.5s;
+}
+.product .nav-link:hover::after, .product .nav-link:hover {
+  width: 100%;
+  color: #fff;
+}/*# sourceMappingURL=interface.css.map */

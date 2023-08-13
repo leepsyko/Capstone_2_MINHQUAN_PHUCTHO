@@ -35,4 +35,52 @@
       color: $color-white-1;
     }
   }
+
+  // Tab content
+
+  #list-product {
+    .product-item {
+      padding: 30px;
+      border-radius: 20px;
+      background-color: $color-bg-gray-2;
+      margin-top: 20px;
+      transition: all 0.5s;
+      &:hover {
+        box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.44),
+          -9px -9px 16px rgba(83, 83, 86, 0.8);
+      }
+      &-img {
+        img {
+          display: block;
+          max-width: 235px;
+          width: 100%;
+          height: auto;
+          margin: auto;
+        }
+      }
+      &-name {
+        h5 {
+          padding: 0 10px;
+          margin: 12px 0;
+          @include styleText($color-white-1, $fs-4, $fw-400);
+        }
+      }
+      &-desc {
+        h5 {
+          padding: 0 10px;
+          margin: 12px 0;
+          @include styleText($color-white-1, $fs-3, $fw-300);
+        }
+      }
+      &-price {
+        padding: 0 10px;
+        margin: 12px 0;
+        h4 {
+          @include styleText($color-white-1, 18px, $fw-600);
+      
+        }
+      }
+    }
+  }
+
 }

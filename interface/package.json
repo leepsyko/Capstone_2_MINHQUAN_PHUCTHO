@@ -1,0 +1,19 @@
+{
+  "name": "interface",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "parcel src/interface.html",
+    "build": "parcel build src/interface.html --public-url ./"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "buffer": "^6.0.3",
+    "parcel": "^2.9.3"
+  },
+  "dependencies": {
+    "axios": "^1.4.0"
+  }
+}

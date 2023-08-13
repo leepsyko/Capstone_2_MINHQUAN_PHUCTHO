@@ -10,14 +10,31 @@
         height: 400px;
         width: 80%;
         border-radius: 20px;
+
+        @include responsive("large") {
+          width: 50%;
+        }
+
+        @include responsive("small") {
+          width: 30%;
+        }
+
+        @include responsive("small") {
+          width: 15%;
+        }
       }
     }
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
       background-color: $color-dark-1;
       border-radius: 50%;
-      padding: 20px;
-      text-align: center;
+      width: 50px;
+      height: 50px;
+      // text-align: center;
+      background-image: none;
+      background-color: $color-bg-gray-2;
+      line-height: 50px;
+      transition: all 0.5s;
     }
   }
 }

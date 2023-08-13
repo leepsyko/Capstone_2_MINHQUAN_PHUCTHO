@@ -24,3 +24,9 @@
     background-color: $color-bg-gray-hover;
   }
 }
+
+.offcanvas-header .btn-close {
+  background: none;
+  color: $color-white-1;
+  font-size: $fs-7;
+}
