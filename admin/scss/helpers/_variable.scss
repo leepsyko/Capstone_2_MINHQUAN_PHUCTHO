@@ -1,0 +1,40 @@
+// color
+$color-bg-gray-1: #3e3e3f;
+$color-bg-gray-2: #323232;
+$color-bg-gray-3: #2f3033;
+$color-bg-gray-hover: #5e5e60;
+$color-white-1: #fff;
+$color-white-2: #afb7bd;
+$color-dark-1: #101010;
+
+// font size
+$fs-1: 0.5rem;
+$fs-2: 0.75rem;
+$fs-3: 1rem;
+$fs-4: 1.25rem;
+$fs-5: 1.5rem;
+$fs-6: 1.75rem;
+$fs-7: 2rem;
+$fs-8: 2.25rem;
+$fs-9: 2.5rem;
+$fs-10: 2.75rem;
+$fs-11: 3rem;
+$fs-12: 3.25rem;
+$fs-13: 3.5rem;
+
+// font weight
+$fw-300: 300;
+$fw-400: 400;
+$fw-500: 500;
+$fw-600: 600;
+$fw-700: 700;
+$fw-800: 800;
+
+//Breakpoint
+$breakpoint: (
+  "small": 576px,
+  "medium": 768px,
+  "large": 992px,
+  "extra-large": 1200px,
+  "extra-extra-large": 1400px,
+);

@@ -1,0 +1,13 @@
+div {
+    nav.bg-secondary  {
+        background-color: $color-dark-1!important;
+        
+        .container{
+            background-color:$color-dark-1 ;
+            div {
+                background-color: $color-dark-1;
+            }
+        }
+        
+    }
+}

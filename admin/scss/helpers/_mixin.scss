@@ -1,0 +1,27 @@
+@mixin styleText($color, $fs, $fw) {
+    color: $color;
+    font-size: $fs;
+    font-weight: $fw;
+  }
+  
+  @mixin styleButton($background, $color, $border) {
+    color: $color;
+    background-color: $background;
+    border: $border;
+  }
+  
+  @mixin responsive($screen) {
+    @if (map-has-key($map: $breakpoint, $key: $screen)) {
+      $value: map-get(
+        $map: $breakpoint,
+        $key: $screen,
+      );
+      @media screen and (min-width: $value) {
+        @content;
+      }
+    }
+    @else {
+      @warn "`{$screen}` isn't in breakpoint";
+    }
+  }
+  
