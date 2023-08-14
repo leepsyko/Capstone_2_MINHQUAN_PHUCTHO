@@ -170,6 +170,7 @@ export function displayProducts(products) {
 }
 
 getElement(".offcanvas-body").onclick = (event) => {
+  // let dataType = document.getElementById("data-index2").getAttribute("data-type");
   let productStoreJson = localStorage.getItem("productsJson");
   let productsOb = JSON.parse(productStoreJson);
   const target = event.target;
@@ -178,12 +179,23 @@ getElement(".offcanvas-body").onclick = (event) => {
   let dataIndex = document
     .getElementById(`plusButton-${idData}`)
     .getAttribute("data-index2");
+    
+  if (target.getAttribute("data-type") == "plus") {
+    carts[dataIndex].quantity++;
+    carts[dataIndex].price =
+      carts[dataIndex].quantity * productsOb[dataIndex].price;
+  } else if (target.getAttribute("data-type") == "minus") {
+    if (carts[dataIndex].quantity == 1) {
+      delete carts[dataIndex];
+    } else {
+      carts[dataIndex].quantity--;
+      carts[dataIndex].price =
+        carts[dataIndex].quantity * productsOb[dataIndex].price;
+    }
+  }
 
-  carts[dataIndex].quantity++;
-  carts[dataIndex].price =
-    carts[dataIndex].quantity * productsOb[dataIndex].price;
 
-  reLoadCart()
+  reLoadCart();
 };
 
 function reLoadCart() {
@@ -202,9 +214,9 @@ function reLoadCart() {
               <img src=${value.image} width="50px" height="50px" />
               <h5 class="mx-3 m-0">${value.name}</h5>
               <div class="d-flex">
-                <button class="btn btn-light minusButton" id="minusButton-${value.id}" data-id="${value.id}" data-index2="${index}">-</button>
-                <input id="quantity-${value.id}" value="${value.quantity}" class="cart-quantity"/>
-                <button class="btn btn-light plusButton" id="plusButton-${value.id}" data-id="${value.id}" data-value="${value.quantity}" data-index2="${index}")">+</button>
+                <button class="btn btn-light minusButton" id="minusButton-${value.id}" data-id="${value.id}" data-index2="${index}" data-type="minus" >-</button>
+                <input id="quantity-${value.id}" value="${value.quantity}" class="cart-quantity" />
+                <button class="btn btn-light plusButton" id="plusButton-${value.id}" data-id="${value.id}" data-index2="${index}" data-type="plus" >+</button>
               </div>
               <h6 class="mx-2 m-0">${value.price} Đ</h6>
               <button class="btn btn-danger text-center">X</button>
