@@ -38,7 +38,7 @@
 
   <body>
     <!-- HEADER -->
-    <header>
+    <header class="fixed-top">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
           <a class="navbar-brand" href="#">
@@ -63,14 +63,24 @@
               <button class="buttonSearch">
                 <span><i class="fa-solid fa-magnifying-glass"></i></span>
               </button>
-              <button
-                class="buttonProduct-cart"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasRight"
-                aria-controls="offcanvasRight"
-              >
-                <span id="cart"><i class="fa-solid fa-cart-shopping"></i></span>
+              <div class="product-cart">
+                <div class="quantity-product" style="display: none"></div>
+                <button
+                  class="buttonProduct-cart"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasRight"
+                  aria-controls="offcanvasRight"
+                >
+                  <span id="cart"
+                    ><i class="fa-solid fa-cart-shopping"></i
+                  ></span>
+                </button>
+              </div>
+              <button class="buttonBack">
+                <a href="#"
+                  ><i class="fa-solid fa-arrow-right-to-bracket"></i
+                ></a>
               </button>
             </form>
           </div>
@@ -86,7 +96,7 @@
       >
         <div class="offcanvas-header">
           <h5 class="offcanvas-title text-white fs-2" id="offcanvasRightLabel">
-            Product
+            Shopping cart
           </h5>
           <button
             type="button"
@@ -97,12 +107,18 @@
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
-        <div class="offcanvas-body text-white">Nội dung mua hàng làm sau</div>
+        <div class="offcanvas-body text-white">
+          <div class="offcanvas-body-notice">
+            Chưa có sản phẩm trong giỏ hàng
+          </div>
+          <div id="offcanvas-body-product"></div>
+        </div>
+        <div class="offcanvas-footer p-3 text-end" style="display: none"></div>
       </div>
     </header>
     <main>
       <!-- BANNER -->
-      <section class="banner my-5 text-center">
+      <section class="banner my-5 text-center mt-5 pt-5">
         <a href="#" class="catename">
           <i class="logo-category">
             <img

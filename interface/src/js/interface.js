@@ -16,7 +16,6 @@ function getElements(selector) {
 // ====================== Global function================================
 
 // DOM
-let quantity = getElement(".quantity-product");
 let bodyCartProduct = getElement("#offcanvas-body-product");
 getInfoProducts();
 
@@ -52,7 +51,7 @@ export function displayProducts(products) {
     return (
       result +
       `
-      <div class="col-4">
+      <div class="col-lg-4 col-md-6">
         <div class="product-item text-center">
           <div class="product-item-img">
             <img src="${itemProduct.image}" alt="" >
@@ -64,7 +63,7 @@ export function displayProducts(products) {
             <h5>${itemProduct.desc}</h5>
           </div>
           <div class="product-item-price">
-            <h4>${itemProduct.price} VND</h4>
+            <h4>${itemProduct.price} $</h4>
           </div>
           <div>
             <button class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Info</button>
@@ -121,65 +120,36 @@ export function displayProducts(products) {
   getElements(".addCartProduct").forEach((element) => {
     element.onclick = (event) => {
       const target = event.target;
-      const id = target.getAttribute("data-id");
-      const name = target.getAttribute("data-name");
-      const image = target.getAttribute("data-img");
-      const price = target.getAttribute("data-price");
+      // const id = target.getAttribute("data-id");
+      // const name = target.getAttribute("data-name");
+      // const image = target.getAttribute("data-img");
+      // const price = target.getAttribute("data-price");
       const index = target.getAttribute("data-index");
       if (carts[index] == null) {
         // copy product form list to list card
         carts[index] = JSON.parse(JSON.stringify(productsOb[index]));
         carts[index].quantity = 1;
-        // getElement(".offcanvas-body-notice").style.display = "none";
-        // getElement("#offcanvas-body-product").style.display = "block";
       } else {
         if (carts[index]) {
           carts[index].quantity++;
           carts[index].price = carts[index].quantity * productsOb[index].price;
-          // getElement(".offcanvas-body-notice").style.display = "none";
-          // getElement("#offcanvas-body-product").style.display = "block";
         }
       }
+      // getElement(".quantity-product").style.display = "block";
       reLoadCart();
-
-      // document.querySelectorAll(".plusButton").forEach((button) => {
-      //   button.addEventListener("click", (event) => {
-      //     let b = event.target.getAttribute("data-index2");
-      //     console.log(carts[b]);
-      //     carts[b].quantity++;
-      //     carts[b].price = carts[b].quantity * productsOb[b].price;
-      //     reLoadCart();
-      //   });
-      // });
-      // document.querySelectorAll(".minusButton").forEach((button) => {
-      //   button.addEventListener("click", (event) => {
-      //     let b = event.target.getAttribute("data-index2");
-      //     carts[b].quantity--;
-      //     carts[b].price = carts[b].quantity * productsOb[b].price;
-      //     console.log(carts[b].quantity);
-      //     if (carts[b].quantity == 0) {
-      //       delete carts[b];
-      //     }
-
-      //     reLoadCart();
-      //   });
-      // });
-      getElement(".quantity-product").style.display = "block";
     };
   });
 }
 
 getElement(".offcanvas-body").onclick = (event) => {
-  // let dataType = document.getElementById("data-index2").getAttribute("data-type");
   let productStoreJson = localStorage.getItem("productsJson");
   let productsOb = JSON.parse(productStoreJson);
-  const target = event.target;
+  let target = event.target;
   let id = target.getAttribute("id");
   let idData = target.getAttribute("data-id");
-  let dataIndex = document
-    .getElementById(`plusButton-${idData}`)
-    .getAttribute("data-index2");
-    
+  let dataIndex = getElement(`#plusButton-${idData}`).getAttribute(
+    "data-index2"
+  );
   if (target.getAttribute("data-type") == "plus") {
     carts[dataIndex].quantity++;
     carts[dataIndex].price =
@@ -192,14 +162,22 @@ getElement(".offcanvas-body").onclick = (event) => {
       carts[dataIndex].price =
         carts[dataIndex].quantity * productsOb[dataIndex].price;
     }
+  } else if (target.getAttribute("data-type") == "delete") {
+    delete carts[dataIndex];
   }
-
-
+  if (carts[dataIndex] == null) {
+    getElement(".offcanvas-body-notice").style.display = "block";
+    getElement(".offcanvas-footer").style.display = "none";
+  }
   reLoadCart();
 };
 
+//Delete item
+
 function reLoadCart() {
+  console.log(carts);
   let bodyProduct = getElement("#offcanvas-body-product");
+  let offcanvasFooter = document.querySelector(".offcanvas-footer");
   bodyCartProduct.innerHTML = "";
   let count = 0;
   let totalPrice = 0;
@@ -212,17 +190,49 @@ function reLoadCart() {
       newDiv.innerHTML = `
           <div class="d-flex align-items-center my-2">
               <img src=${value.image} width="50px" height="50px" />
-              <h5 class="mx-3 m-0">${value.name}</h5>
-              <div class="d-flex">
-                <button class="btn btn-light minusButton" id="minusButton-${value.id}" data-id="${value.id}" data-index2="${index}" data-type="minus" >-</button>
-                <input id="quantity-${value.id}" value="${value.quantity}" class="cart-quantity" />
-                <button class="btn btn-light plusButton" id="plusButton-${value.id}" data-id="${value.id}" data-index2="${index}" data-type="plus" >+</button>
+              <h5 class="mx-1 m-0">${value.name}</h5>
+              <div class="d-flex justify-content-center">
+                <button class="btn btn-light minusButton" id="minusButton-${
+                  value.id
+                }" data-id="${
+        value.id
+      }" data-index2="${index}" data-type="minus" >-</button>
+                <input id="quantity-${value.id}" value="${
+        value.quantity
+      }" class="cart-quantity" />
+                <button class="btn btn-light plusButton" id="plusButton-${
+                  value.id
+                }" data-id="${
+        value.id
+      }" data-index2="${index}" data-type="plus" >+</button>
               </div>
-              <h6 class="mx-2 m-0">${value.price} Đ</h6>
-              <button class="btn btn-danger text-center">X</button>
+              <h6 class="mx-1 m-0">${value.price.toLocaleString()}</h6>
+              <button class="btn btn-danger text-center deleteButton" id="deleteButton-${
+                value.id
+              }" data-id="${
+        value.id
+      }" data-index2="${index}" data-type="delete">X</button>
           </div>
       `;
       bodyProduct.appendChild(newDiv);
     }
+    offcanvasFooter.style.display = "block";
+    offcanvasFooter.innerHTML = `<p class="text-white">Total: ${totalPrice.toLocaleString()} $</p>`;
   });
+  updateCartQuantity();
+}
+function updateCartQuantity() {
+  const totalQuantity = carts.reduce((total, product) => {
+    return total + (product ? product.quantity : 0);
+  }, 0);
+
+  const quantityElement = getElement(".quantity-product");
+  quantityElement.textContent = totalQuantity.toString();
+
+  // Hiển thị hoặc ẩn phần tử quantity-product dựa trên số lượng sản phẩm
+  if (totalQuantity > 0) {
+    quantityElement.style.display = "block";
+  } else {
+    quantityElement.style.display = "none";
+  }
 }
