@@ -30,7 +30,7 @@ export function getInfoProducts() {
       console.log(error);
     });
 }
-const carts = [];
+let carts = [];
 // display
 export function displayProducts(products) {
   let contentHTML = products.reduce((result, value, index) => {
@@ -66,7 +66,7 @@ export function displayProducts(products) {
             <h4>${itemProduct.price} $</h4>
           </div>
           <div>
-            <button class="btn btn-secondary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Info</button>
+            <button class="btn btn-secondary" data-bs-target="#modal1-${itemProduct.id}" data-bs-toggle="modal">Info</button>
             <button class="btn btn-light addCartProduct" data-id="${itemProduct.id}" data-img="${itemProduct.image}" data-name="${itemProduct.name}" data-price="${itemProduct.price}" data-index=${index}>Add</button>
           </div>
         </div>
@@ -75,15 +75,15 @@ export function displayProducts(products) {
       </-- Modal -->
       <div
       class="modal fade"
-      id="exampleModalToggle"
+      id="modal1-${itemProduct.id}"
       aria-hidden="true"
-      aria-labelledby="exampleModalToggleLabel"
+      aria-labelledby="modal2-${itemProduct.id}"
       tabindex="-1"
     >
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalToggleLabel">
+            <h1 class="modal-title fs-5" id="modal2-${itemProduct.id}">
               ${itemProduct.name}
             </h1>
             <button
@@ -236,3 +236,262 @@ function updateCartQuantity() {
     quantityElement.style.display = "none";
   }
 }
+
+//====================DOM
+
+getElement("#pills-profile-tab").onclick = async () => {
+  try {
+    let newProducts = (await apiMethod.apiGetProducts()).data;
+    newProducts = newProducts.filter((value) => value.type === "iphone 14");
+    let contentHTML = newProducts.reduce((result, value, index) => {
+      let itemProduct = new consObject(
+        value.id,
+        value.name,
+        value.price.toLocaleString(),
+        value.screen,
+        value.backCamera,
+        value.frontCamera,
+        value.img,
+        value.desc,
+        value.type
+      );
+
+      let productsJson = JSON.stringify(newProducts);
+      localStorage.setItem("productsJson", productsJson);
+      return (
+        result + `
+        <div class="col-4">
+          <div class="product-item text-center">
+            <div class="product-item-img">
+              <img src="${itemProduct.image}" alt="" >
+            </div>
+            <div class="product-item-name">
+              <h5>${itemProduct.name}</h5>
+            </div>
+            <div class="product-item-desc">
+              <h5>${itemProduct.desc}</h5>
+            </div>
+            <div class="product-item-price">
+              <h4>${itemProduct.price} VND</h4>
+            </div>
+            <div>
+              <button class="btn btn-secondary" data-bs-target="#modal3-${itemProduct.id}" data-bs-toggle="modal">Info</button>
+              <button class="btn btn-light addCartProduct" data-id="${itemProduct.id}" data-type="addProduct" data-img="${itemProduct.image}" data-name="${itemProduct.name}" data-price="${itemProduct.price}" data-index=${index}>Add</button>
+            </div>
+          </div>
+        </div>
+  
+        </-- Modal -->
+        <div
+        class="modal fade"
+        id="modal3-${itemProduct.id}"
+        aria-hidden="true"
+        aria-labelledby="modal4-${itemProduct.id}"
+        tabindex="-1"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modal4-${itemProduct.id}">
+                ${itemProduct.name}
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p>Màn hình: ${itemProduct.screen}</p>
+              <p>Camera sau: ${itemProduct.backCamera}</p>
+              <p>Camera trước: ${itemProduct.frontCamera}</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-danger"
+                data-bs-target="#exampleModalToggle2"
+                data-bs-toggle="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+        `
+      );
+    }, " ");
+
+    document.getElementById("iphone14").innerHTML = contentHTML;
+
+    let productStoreJson = localStorage.getItem("productsJson");
+    let productsOb = JSON.parse(productStoreJson);
+
+    getElements(".addCartProduct").forEach((element) => {
+      element.onclick = (event) => {
+        const target = event.target;
+        const dataType = target.getAttribute("data-type");
+        const id = target.getAttribute("data-id");
+        const index = target.getAttribute("data-index");
+        let newCarts = [];
+
+        if (dataType === "addProduct") {
+          let found = carts.find((item) => item.id === id);
+          console.log(found);
+          if (found) {
+            newCarts = carts.map((item) => {
+              if (item.id === id) {
+                return { ...item, quantity: item.quantity + 1 };
+              }
+
+              return item;
+            });
+            carts = [...newCarts];
+            console.log("đã có sản phẩm trong giỏ hàng", carts);
+          } else {
+            let itemNew = { ...productsOb[index], quantity: 1 };
+            carts.push(itemNew);
+            console.log("lần đầu thêm sản phẩm", carts);
+          }
+        }
+        reLoadCart();
+        getElement(".quantity-product").style.display = "block";
+      };
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+getElement("#pills-contact-tab").onclick = async () => {
+  try {
+    let newProducts = (await apiMethod.apiGetProducts()).data;
+    newProducts = newProducts.filter((value) => value.type === "iphone 13");
+    console.log(newProducts);
+
+    let contentHTML = newProducts.reduce((result, value, index) => {
+      let itemProduct = new consObject(
+        value.id,
+        value.name,
+        value.price.toLocaleString(),
+        value.screen,
+        value.backCamera,
+        value.frontCamera,
+        value.img,
+        value.desc,
+        value.type
+      );
+
+      let productsJson = JSON.stringify(newProducts);
+      localStorage.setItem("productsJson", productsJson);
+      return (
+        result +
+        `
+        <div class="col-4">
+          <div class="product-item text-center">
+            <div class="product-item-img">
+              <img src="${itemProduct.image}" alt="" >
+            </div>
+            <div class="product-item-name">
+              <h5>${itemProduct.name}</h5>
+            </div>
+            <div class="product-item-desc">
+              <h5>${itemProduct.desc}</h5>
+            </div>
+            <div class="product-item-price">
+              <h4>${itemProduct.price} VND</h4>
+            </div>
+            <div>
+              <button class="btn btn-secondary" data-bs-target="#modal3-${itemProduct.id}" data-bs-toggle="modal">Info</button>
+              <button class="btn btn-light addCartProduct" data-id="${itemProduct.id}" data-type="addProduct" data-img="${itemProduct.image}" data-name="${itemProduct.name}" data-price="${itemProduct.price}" data-index=${index}>Add</button>
+            </div>
+          </div>
+        </div>
+  
+        </-- Modal -->
+        <div
+        class="modal fade"
+        id="modal3-${itemProduct.id}"
+        aria-hidden="true"
+        aria-labelledby="modal4-${itemProduct.id}"
+        tabindex="-1"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modal4-${itemProduct.id}">
+                ${itemProduct.name}
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p>Màn hình: ${itemProduct.screen}</p>
+              <p>Camera sau: ${itemProduct.backCamera}</p>
+              <p>Camera trước: ${itemProduct.frontCamera}</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-danger"
+                data-bs-target="#exampleModalToggle2"
+                data-bs-toggle="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+        `
+      );
+    }, " ");
+
+    document.getElementById("iphone13").innerHTML = contentHTML;
+
+    let productStoreJson = localStorage.getItem("productsJson");
+    let productsOb = JSON.parse(productStoreJson);
+
+    getElements(".addCartProduct").forEach((element) => {
+      element.onclick = (event) => {
+        const target = event.target;
+        const dataType = target.getAttribute("data-type");
+        const id = target.getAttribute("data-id");
+        const index = target.getAttribute("data-index");
+        let newCarts = [];
+
+        if (dataType === "addProduct") {
+          let found = carts.find((item) => item.id === id);
+          console.log(found);
+          if (found) {
+            newCarts = carts.map((item) => {
+              if (item.id === id) {
+                return { ...item, quantity: item.quantity + 1 };
+              }
+
+              return item;
+            });
+            carts = [...newCarts];
+            console.log("đã có sản phẩm trong giỏ hàng", carts);
+          } else {
+            let itemNew = { ...productsOb[index], quantity: 1 };
+            carts.push(itemNew);
+            console.log("lần đầu thêm sản phẩm", carts);
+          }
+        }
+        reLoadCart();
+        getElement(".quantity-product").style.display = "block";
+      };
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+getElement("#pills-home-tab").onclick = () => {
+ getInfoProducts();
+};
