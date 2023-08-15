@@ -17,11 +17,18 @@
 
 .buttonProduct-cart {
   @extend .buttonProduct;
-  margin-left: 10px;
+  margin: 0 10px;
   transition: all 0.5s;
   @include styleButton($color-bg-gray-3, $color-white-1, none);
   &:hover {
     background-color: $color-bg-gray-hover;
+  }
+}
+
+.buttonBack {
+  @extend .buttonSearch;
+  a {
+    color: $color-white-1;
   }
 }
 

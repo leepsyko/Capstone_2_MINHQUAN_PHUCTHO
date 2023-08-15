@@ -4,6 +4,7 @@
   }
   .banner-img {
     .carousel-inner {
+      overflow: visible;
       img {
         object-fit: cover;
         object-position: top;

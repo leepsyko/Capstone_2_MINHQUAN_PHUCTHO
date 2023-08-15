@@ -45,6 +45,7 @@
       background-color: $color-bg-gray-2;
       margin-top: 20px;
       transition: all 0.5s;
+      height: 450px;
       &:hover {
         box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.44),
           -9px -9px 16px rgba(83, 83, 86, 0.8);
@@ -77,10 +78,8 @@
         margin: 12px 0;
         h4 {
           @include styleText($color-white-1, 18px, $fw-600);
-      
         }
       }
     }
   }
-
 }

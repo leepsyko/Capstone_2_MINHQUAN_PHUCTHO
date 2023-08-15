@@ -1,0 +1,27 @@
+.offcanvas {
+  .offcanvas-body {
+    .offcanvas-body-notice {
+      display: block;
+    }
+    #offcanvas-body-product {
+      .cart-quantity {
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        margin: 0 2px;
+      }
+      .btn-light {
+        @extend .cart-quantity;
+        line-height: 10px;
+        padding: 0;
+      }
+      h5 {
+        @include styleText($color-white-1, $fs-3, $fw-400);
+      }
+      .btn-danger {
+        @extend .cart-quantity;
+        padding: 0;
+      }
+    }
+  }
+}
