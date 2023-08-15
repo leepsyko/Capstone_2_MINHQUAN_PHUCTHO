@@ -37,7 +37,8 @@ function displayProducts(products) {
       } <br> Camera trước: ${
         itemProduct.frontCamera
       } <br> Kích thước màn hình: ${itemProduct.screen} </td>
-    <td><img src="${itemProduct.image}" width="100px" height="100px"></td>
+    <td>
+    <img src="${itemProduct.img}" width="100px" height="100px"></td>
     <td>${itemProduct.type}</td>
     <td>
     <button class="btn btn-primary" data-id="${
@@ -53,58 +54,14 @@ function displayProducts(products) {
     );
   }, " ");
 
-  // getElement(".deletePro").onclick = (event) =>{
-  //   console.log(event.target)
-  // }
   document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
 }
-
-// backup
-// function displayProducts(products) {
-//   let contentHTML = products.reduce((result, value, index) => {
-//     let itemProduct = new consObject(
-//       value.id,
-//       value.name,
-//       value.price,
-//       value.image,
-//       value.type
-//     );
-//     return (
-//       result +
-//       `
-//     <tr>
-//     <td>${index + 1}</td>
-//     <td>${itemProduct.name}</td>
-//     <td>${itemProduct.price}</td>
-//     <td><img src="${itemProduct.image}" width="100px" height="100px"></td>
-//     <td>${itemProduct.type}</td>
-//     <td>
-//     <button class="btn btn-primary" onclick="selectProduct(${
-//       itemProduct.id
-//     })">Xem</button>
-//     </td>
-//     <td>
-//     <button class="btn btn-primary" class="deletePro" onclick="deleteProduct(${
-//       itemProduct.id
-//     })">Xoá</button>
-//     </td>
-//     </tr>`
-//     );
-//   }, " ");
-
-//   document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
-
-//   // getElement(".deletePro").onclick = (event) => {
-//   //   console.log(event.target)
-//   // }
-// }
 
 // Get information
 function getInfoProducts() {
   apiMethod
     .apiGetProducts()
     .then((response) => {
-      console.log(response.data);
       displayProducts(response.data);
     })
     .catch((error) => {
@@ -117,17 +74,14 @@ getInfoProducts();
 // Create new Product
 
 async function createProduct() {
-  console.log("hê");
-  let product = {
-    name: getElement("#TenSP").value,
-    price: +getElement("#GiaSP").value,
-    screen: +getElement("#ManHinhSP").value,
-    backCamera: +getElement("#CameraBSP").value,
-    frontCamera: +getElement("#CameraASP").value,
-    image: getElement("#HinhSP").value,
-    desc: getElement("#ThongtinSP").value,
-    type: getElement("#loaiSP").value,
-  };
+  let product = validate();
+
+  console.log("product")
+
+  if (!product) {
+    return;
+  }
+
   try {
     await apiMethod.apiCreateProduct(product);
     getInfoProducts();
@@ -162,6 +116,7 @@ async function deleteProduct(id) {
 
 // Show a Product
 async function showProduct(id) {
+  resetForm()
   $("#myModal").modal("show");
 
   getElement(".modal-title").innerHTML = "Cập nhật sản phẩm";
@@ -182,78 +137,181 @@ async function showProduct(id) {
     getElement("#ThongtinSP").value = product.desc;
     getElement("#loaiSP").value = product.type;
 
-    console.log(product.type);
+    // console.log(product.type);
   } catch (error) {
     console.log(error);
   }
 
   // event delegation with upDate function
-getElement("#upDate").onclick = (event)=>{
-  upDateProduct(event.target.getAttribute("data-id"))
-
-}
-
+  getElement("#upDate").onclick = (event) => {
+    upDateProduct(event.target.getAttribute("data-id"));
+  };
 }
 
 // upDate product information
 async function upDateProduct(id) {
 
-  let newProduct = {
-    name: getElement("#TenSP").value,
-    price: +getElement("#GiaSP").value,
-    screen: +getElement("#ManHinhSP").value,
-    backCamera: +getElement("#CameraBSP").value,
-    frontCamera: +getElement("#CameraASP").value,
-    image: getElement("#HinhSP").value,
-    desc: getElement("#ThongtinSP").value,
-    type: getElement("#loaiSP").value,
-  };
+  let newProduct = validate();
+
+
+  if (!newProduct) {
+    console.log("vào lỗi");
+    return;
+  }
+
+  // let newProduct = {
+  //   name: getElement("#TenSP").value,
+  //   price: +getElement("#GiaSP").value,
+  //   screen: +getElement("#ManHinhSP").value,
+  //   backCamera: +getElement("#CameraBSP").value,
+  //   frontCamera: +getElement("#CameraASP").value,
+  //   img: getElement("#HinhSP").value,
+  //   desc: getElement("#ThongtinSP").value,
+  //   type: getElement("#loaiSP").value,
+  // };
   try {
-    console.log("ddaau laf update")
-    await apiMethod.apiUpdateProduct(id,newProduct);
+    await apiMethod.apiUpdateProduct(id, newProduct);
     getInfoProducts();
-     // hide modal popUp
-  $("#myModal").modal("hide");
+    // hide modal popUp
+    $("#myModal").modal("hide");
   } catch (error) {
     console.log(error);
   }
 }
 
-
 // ----------validate check information from form
 
+// check input is empty
 function isRequired(value) {
   // Check empty of input
-  if (!value.trim) {
+  if (!value.trim()) {
     return false;
   }
   return true;
 }
 
+// check character is number
+
+function isNumber(value) {
+  if (isNaN(value)) {
+    return false;
+  }
+
+  return true;
+}
+
 function validate() {
   let isValid = true;
-
-  let spanSubtitle1 = (document.createElement("span").textContent =
-    "Không được để trống");
-  let spanSubtitle2 = (document.createElement("span").textContent =
-    "Không hợp lệ");
-
+console.log("Vào lỗi của validate")
   // dom
   let nameForm = getElement("#TenSP").value;
-  let priceForm = +getElement("#GiaSP").value;
-  let image = getElement("HinhSP").value;
-  let typeForm = getElement("loaiSP").value;
+  let priceForm = getElement("#GiaSP").value;
+  let screenForm = getElement("#ManHinhSP").value;
+  let cameraBSPForm = getElement("#CameraBSP").value;
+  let cameraASPForm = getElement("#CameraASP").value;
+  let imageForm = getElement("#HinhSP").value;
+  let infoForm = getElement("#ThongtinSP").value;
+  let typeForm = getElement("#loaiSP").value;
 
   // Name of product
   if (!isRequired(nameForm)) {
     isValid = false;
-    getElement(".form-group").insertAfter(spanSubtitle1, getElement("#TenSP"));
+    getElement("#spanName").innerHTML = "Không được để trống";
+  } else {
+    getElement("#spanName").innerHTML = "";
   }
+  // Price of product
+  if (!isRequired(priceForm)) {
+    isValid = false;
+    getElement("#spanPrice").innerHTML = "Không được để trống";
+  } else if (!isNumber(priceForm)) {
+    isValid = false;
+    getElement("#spanPrice").innerHTML = "Nhập vào một số";
+  } else {
+    getElement("#spanPrice").innerHTML = "";
+  }
+  // Screen of product
+  if (!isRequired(screenForm)) {
+    isValid = false;
+    getElement("#spanScreen").innerHTML = "Không được để trống";
+  } else if (!isNumber(screenForm)) {
+    isValid = false;
+    getElement("#spanScreen").innerHTML = "Nhập vào một số";
+  } else {
+    getElement("#spanScreen").innerHTML = "";
+  }
+  // BSP of product
+  if (!isRequired(cameraBSPForm)) {
+    isValid = false;
+    getElement("#spanBSP").innerHTML = "Không được để trống";
+  } else if (!isNumber(cameraBSPForm)) {
+    isValid = false;
+    getElement("#spanBSP").innerHTML = "Nhập vào một số";
+  } else {
+    getElement("#spanBSP").innerHTML = "";
+  }
+  // ASP of product
+  if (!isRequired(cameraASPForm)) {
+    isValid = false;
+    getElement("#spanASP").innerHTML = "Không được để trống";
+  } else if (!isNumber(cameraASPForm)) {
+    isValid = false;
+    getElement("#spanASP").innerHTML = "Nhập vào một số";
+  } else {
+    getElement("#spanASP").innerHTML = "";
+  }
+  // Image of product
+  if (!isRequired(imageForm)) {
+    isValid = false;
+    getElement("#spanHinh").innerHTML = "Không được để trống";
+  } else {
+    getElement("#spanHinh").innerHTML = "";
+  }
+  // Info of product
+  if (!isRequired(infoForm)) {
+    isValid = false;
+    getElement("#spanInfor").innerHTML = "Không được để trống";
+  } else {
+    getElement("#spanInfor").innerHTML = "";
+  }
+  // Type of product
+  if (!isRequired(typeForm)) {
+    isValid = false;
+    getElement("#spanType").innerHTML = "Không được để trống";
+  } else {
+    getElement("#spanType").innerHTML = "";
+  }
+
+  if (isValid) {
+    let product = {
+      name: getElement("#TenSP").value,
+      price: +getElement("#GiaSP").value,
+      screen: +getElement("#ManHinhSP").value,
+      backCamera: +getElement("#CameraBSP").value,
+      frontCamera: +getElement("#CameraASP").value,
+      img: getElement("#HinhSP").value,
+      desc: getElement("#ThongtinSP").value,
+      type: getElement("#loaiSP").value,
+    };
+    return product;
+  }
+
+  return isValid;
 }
 
-// reset form 
+// reset form
 
 function resetForm() {
+
+  getElement("#spanName").innerHTML = ""
+  getElement("#spanPrice").innerHTML = ""
+  getElement("#spanScreen").innerHTML = "";
+  getElement("#spanBSP").innerHTML = "";
+  getElement("#spanASP").innerHTML = "";
+  getElement("#spanHinh").innerHTML = "";
+  getElement("#spanInfor").innerHTML = "";
+  getElement("#spanType").innerHTML = "";
+
   getElement("#TenSP").value = "";
   getElement("#GiaSP").value = "";
   getElement("#ManHinhSP").value = "";
@@ -276,11 +334,50 @@ getElement("#btnThemSP").onclick = () => {
   getElement("#add").onclick = createProduct;
 };
 
-// onclick for delete
-// getElement(".deletePro").onclick = (event) =>{
-//   console.log(event.target)
-// }
+// button search name product
+getElement("#basic-addon2").onclick = () => {
+  let keyName = getElement("#txtSearch").value;
+  keyName = keyName.trim().toLowerCase();
 
-//  getElement(".deletePro").onclick = (event) =>{
-//     console.log(event.target)
-//   }
+  try {
+    apiMethod.apiGetProducts().then((response) => {
+      let products = response.data;
+      let newListName = products.filter((value) => {
+        let nameProducts = value.name.trim().toLowerCase();
+        return nameProducts.includes(keyName);
+      });
+
+      displayProducts(newListName);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// sort product by price
+getElement("#filterByPrice").onchange = (event) => {
+  function lowHigh(a, b) {
+    // hàm để sử dụng sắp xếp số
+    return a.price - b.price;
+  }
+  function highLow(a, b) {
+    // hàm để sử dụng sắp xếp số
+    return b.price - a.price;
+  }
+  let newListProducts = [];
+  try {
+    apiMethod.apiGetProducts().then((response) => {
+      let products = response.data;
+      if (event.target.value === "high") {
+        newListProducts = products.sort(highLow);
+      } else if (event.target.value === "low") {
+        newListProducts = products.sort(lowHigh);
+      }else{
+        newListProducts = products
+      }
+      displayProducts(newListProducts);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

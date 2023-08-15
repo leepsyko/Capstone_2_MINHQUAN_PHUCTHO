@@ -54,7 +54,7 @@ export function displayProducts(products) {
       <div class="col-lg-4 col-md-6">
         <div class="product-item text-center">
           <div class="product-item-img">
-            <img src="${itemProduct.image}" alt="" >
+            <img src="${itemProduct.img}" alt="" >
           </div>
           <div class="product-item-name">
             <h5>${itemProduct.name}</h5>
@@ -67,7 +67,7 @@ export function displayProducts(products) {
           </div>
           <div>
             <button class="btn btn-secondary" data-bs-target="#modal1-${itemProduct.id}" data-bs-toggle="modal">Info</button>
-            <button class="btn btn-light addCartProduct" data-id="${itemProduct.id}" data-img="${itemProduct.image}" data-name="${itemProduct.name}" data-price="${itemProduct.price}" data-index=${index}>Add</button>
+            <button class="btn btn-light addCartProduct" data-id="${itemProduct.id}" data-img="${itemProduct.img}" data-name="${itemProduct.name}" data-price="${itemProduct.price}" data-index=${index}>Add</button>
           </div>
         </div>
       </div>
@@ -156,14 +156,14 @@ getElement(".offcanvas-body").onclick = (event) => {
       carts[dataIndex].quantity * productsOb[dataIndex].price;
   } else if (target.getAttribute("data-type") == "minus") {
     if (carts[dataIndex].quantity == 1) {
-      delete carts[dataIndex];
+      carts = carts.splice(dataIndex + 1, 1);
     } else {
       carts[dataIndex].quantity--;
       carts[dataIndex].price =
         carts[dataIndex].quantity * productsOb[dataIndex].price;
     }
   } else if (target.getAttribute("data-type") == "delete") {
-    delete carts[dataIndex];
+    carts = carts.splice(dataIndex + 1, 1);
   }
   if (carts[dataIndex] == null) {
     getElement(".offcanvas-body-notice").style.display = "block";
@@ -189,7 +189,7 @@ function reLoadCart() {
       let newDiv = document.createElement("div");
       newDiv.innerHTML = `
           <div class="d-flex align-items-center my-2">
-              <img src=${value.image} width="50px" height="50px" />
+              <img src=${value.img} width="50px" height="50px" />
               <h5 class="mx-1 m-0">${value.name}</h5>
               <div class="d-flex justify-content-center">
                 <button class="btn btn-light minusButton" id="minusButton-${
@@ -263,7 +263,7 @@ getElement("#pills-profile-tab").onclick = async () => {
         <div class="col-4">
           <div class="product-item text-center">
             <div class="product-item-img">
-              <img src="${itemProduct.image}" alt="" >
+              <img src="${itemProduct.img}" alt="" >
             </div>
             <div class="product-item-name">
               <h5>${itemProduct.name}</h5>
@@ -276,7 +276,7 @@ getElement("#pills-profile-tab").onclick = async () => {
             </div>
             <div>
               <button class="btn btn-secondary" data-bs-target="#modal3-${itemProduct.id}" data-bs-toggle="modal">Info</button>
-              <button class="btn btn-light addCartProduct" data-id="${itemProduct.id}" data-type="addProduct" data-img="${itemProduct.image}" data-name="${itemProduct.name}" data-price="${itemProduct.price}" data-index=${index}>Add</button>
+              <button class="btn btn-light addCartProduct" data-id="${itemProduct.id}" data-type="addProduct" data-img="${itemProduct.img}" data-name="${itemProduct.name}" data-price="${itemProduct.price}" data-index=${index}>Add</button>
             </div>
           </div>
         </div>
@@ -383,6 +383,8 @@ getElement("#pills-contact-tab").onclick = async () => {
         value.type
       );
 
+      console.log(itemProduct)
+
       let productsJson = JSON.stringify(newProducts);
       localStorage.setItem("productsJson", productsJson);
       return (
@@ -391,7 +393,7 @@ getElement("#pills-contact-tab").onclick = async () => {
         <div class="col-4">
           <div class="product-item text-center">
             <div class="product-item-img">
-              <img src="${itemProduct.image}" alt="" >
+              <img src="${itemProduct.img}" alt="" >
             </div>
             <div class="product-item-name">
               <h5>${itemProduct.name}</h5>
@@ -404,7 +406,7 @@ getElement("#pills-contact-tab").onclick = async () => {
             </div>
             <div>
               <button class="btn btn-secondary" data-bs-target="#modal3-${itemProduct.id}" data-bs-toggle="modal">Info</button>
-              <button class="btn btn-light addCartProduct" data-id="${itemProduct.id}" data-type="addProduct" data-img="${itemProduct.image}" data-name="${itemProduct.name}" data-price="${itemProduct.price}" data-index=${index}>Add</button>
+              <button class="btn btn-light addCartProduct" data-id="${itemProduct.id}" data-type="addProduct" data-img="${itemProduct.img}" data-name="${itemProduct.name}" data-price="${itemProduct.price}" data-index=${index}>Add</button>
             </div>
           </div>
         </div>

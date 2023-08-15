@@ -596,7 +596,8 @@ function displayProducts(products) {
     <td>${itemProduct.name}</td>
     <td>${itemProduct.price}</td>
     <td>${itemProduct.desc} <br> Camerasau: ${itemProduct.backCamera} <br> Camera trước: ${itemProduct.frontCamera} <br> Kích thước màn hình: ${itemProduct.screen} </td>
-    <td><img src="${itemProduct.image}" width="100px" height="100px"></td>
+    <td>
+    <img src="${itemProduct.img}" width="100px" height="100px"></td>
     <td>${itemProduct.type}</td>
     <td>
     <button class="btn btn-primary" data-id="${itemProduct.id}" data-type="xem">Xem</button>
@@ -606,52 +607,11 @@ function displayProducts(products) {
     </td>
     </tr>`;
     }, " ");
-    // getElement(".deletePro").onclick = (event) =>{
-    //   console.log(event.target)
-    // }
     document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
 }
-// backup
-// function displayProducts(products) {
-//   let contentHTML = products.reduce((result, value, index) => {
-//     let itemProduct = new consObject(
-//       value.id,
-//       value.name,
-//       value.price,
-//       value.image,
-//       value.type
-//     );
-//     return (
-//       result +
-//       `
-//     <tr>
-//     <td>${index + 1}</td>
-//     <td>${itemProduct.name}</td>
-//     <td>${itemProduct.price}</td>
-//     <td><img src="${itemProduct.image}" width="100px" height="100px"></td>
-//     <td>${itemProduct.type}</td>
-//     <td>
-//     <button class="btn btn-primary" onclick="selectProduct(${
-//       itemProduct.id
-//     })">Xem</button>
-//     </td>
-//     <td>
-//     <button class="btn btn-primary" class="deletePro" onclick="deleteProduct(${
-//       itemProduct.id
-//     })">Xoá</button>
-//     </td>
-//     </tr>`
-//     );
-//   }, " ");
-//   document.getElementById("tblDanhSachSP").innerHTML = contentHTML;
-//   // getElement(".deletePro").onclick = (event) => {
-//   //   console.log(event.target)
-//   // }
-// }
 // Get information
 function getInfoProducts() {
     _productsAPI.apiGetProducts().then((response)=>{
-        console.log(response.data);
         displayProducts(response.data);
     }).catch((error)=>{
         console.log(error);
@@ -660,17 +620,9 @@ function getInfoProducts() {
 getInfoProducts();
 // Create new Product
 async function createProduct() {
-    console.log("h\xea");
-    let product = {
-        name: getElement("#TenSP").value,
-        price: +getElement("#GiaSP").value,
-        screen: +getElement("#ManHinhSP").value,
-        backCamera: +getElement("#CameraBSP").value,
-        frontCamera: +getElement("#CameraASP").value,
-        image: getElement("#HinhSP").value,
-        desc: getElement("#ThongtinSP").value,
-        type: getElement("#loaiSP").value
-    };
+    let product = validate();
+    console.log("product");
+    if (!product) return;
     try {
         await _productsAPI.apiCreateProduct(product);
         getInfoProducts();
@@ -698,6 +650,7 @@ async function deleteProduct(id) {
 }
 // Show a Product
 async function showProduct(id) {
+    resetForm();
     $("#myModal").modal("show");
     getElement(".modal-title").innerHTML = "C\xe2̣p nh\xe2̣t sản ph\xe2̉m";
     getElement(".modal-footer").innerHTML = `
@@ -714,7 +667,7 @@ async function showProduct(id) {
         getElement("#HinhSP").value = product.img;
         getElement("#ThongtinSP").value = product.desc;
         getElement("#loaiSP").value = product.type;
-        console.log(product.type);
+    // console.log(product.type);
     } catch (error) {
         console.log(error);
     }
@@ -725,18 +678,22 @@ async function showProduct(id) {
 }
 // upDate product information
 async function upDateProduct(id) {
-    let newProduct = {
-        name: getElement("#TenSP").value,
-        price: +getElement("#GiaSP").value,
-        screen: +getElement("#ManHinhSP").value,
-        backCamera: +getElement("#CameraBSP").value,
-        frontCamera: +getElement("#CameraASP").value,
-        image: getElement("#HinhSP").value,
-        desc: getElement("#ThongtinSP").value,
-        type: getElement("#loaiSP").value
-    };
+    let newProduct = validate();
+    if (!newProduct) {
+        console.log("vào l\xf4̃i");
+        return;
+    }
+    // let newProduct = {
+    //   name: getElement("#TenSP").value,
+    //   price: +getElement("#GiaSP").value,
+    //   screen: +getElement("#ManHinhSP").value,
+    //   backCamera: +getElement("#CameraBSP").value,
+    //   frontCamera: +getElement("#CameraASP").value,
+    //   img: getElement("#HinhSP").value,
+    //   desc: getElement("#ThongtinSP").value,
+    //   type: getElement("#loaiSP").value,
+    // };
     try {
-        console.log("ddaau laf update");
         await _productsAPI.apiUpdateProduct(id, newProduct);
         getInfoProducts();
         // hide modal popUp
@@ -746,28 +703,106 @@ async function upDateProduct(id) {
     }
 }
 // ----------validate check information from form
+// check input is empty
 function isRequired(value) {
     // Check empty of input
-    if (!value.trim) return false;
+    if (!value.trim()) return false;
+    return true;
+}
+// check character is number
+function isNumber(value) {
+    if (isNaN(value)) return false;
     return true;
 }
 function validate() {
     let isValid = true;
-    let spanSubtitle1 = document.createElement("span").textContent = "Kh\xf4ng được đ\xeả tr\xf4́ng";
-    let spanSubtitle2 = document.createElement("span").textContent = "Kh\xf4ng hợp l\xeạ";
+    console.log("Vào l\xf4̃i của validate");
     // dom
     let nameForm = getElement("#TenSP").value;
-    let priceForm = +getElement("#GiaSP").value;
-    let image = getElement("HinhSP").value;
-    let typeForm = getElement("loaiSP").value;
+    let priceForm = getElement("#GiaSP").value;
+    let screenForm = getElement("#ManHinhSP").value;
+    let cameraBSPForm = getElement("#CameraBSP").value;
+    let cameraASPForm = getElement("#CameraASP").value;
+    let imageForm = getElement("#HinhSP").value;
+    let infoForm = getElement("#ThongtinSP").value;
+    let typeForm = getElement("#loaiSP").value;
     // Name of product
     if (!isRequired(nameForm)) {
         isValid = false;
-        getElement(".form-group").insertAfter(spanSubtitle1, getElement("#TenSP"));
+        getElement("#spanName").innerHTML = "Kh\xf4ng được đ\xeả tr\xf4́ng";
+    } else getElement("#spanName").innerHTML = "";
+    // Price of product
+    if (!isRequired(priceForm)) {
+        isValid = false;
+        getElement("#spanPrice").innerHTML = "Kh\xf4ng được đ\xeả tr\xf4́ng";
+    } else if (!isNumber(priceForm)) {
+        isValid = false;
+        getElement("#spanPrice").innerHTML = "Nh\xe2̣p vào m\xf4̣t s\xf4́";
+    } else getElement("#spanPrice").innerHTML = "";
+    // Screen of product
+    if (!isRequired(screenForm)) {
+        isValid = false;
+        getElement("#spanScreen").innerHTML = "Kh\xf4ng được đ\xeả tr\xf4́ng";
+    } else if (!isNumber(screenForm)) {
+        isValid = false;
+        getElement("#spanScreen").innerHTML = "Nh\xe2̣p vào m\xf4̣t s\xf4́";
+    } else getElement("#spanScreen").innerHTML = "";
+    // BSP of product
+    if (!isRequired(cameraBSPForm)) {
+        isValid = false;
+        getElement("#spanBSP").innerHTML = "Kh\xf4ng được đ\xeả tr\xf4́ng";
+    } else if (!isNumber(cameraBSPForm)) {
+        isValid = false;
+        getElement("#spanBSP").innerHTML = "Nh\xe2̣p vào m\xf4̣t s\xf4́";
+    } else getElement("#spanBSP").innerHTML = "";
+    // ASP of product
+    if (!isRequired(cameraASPForm)) {
+        isValid = false;
+        getElement("#spanASP").innerHTML = "Kh\xf4ng được đ\xeả tr\xf4́ng";
+    } else if (!isNumber(cameraASPForm)) {
+        isValid = false;
+        getElement("#spanASP").innerHTML = "Nh\xe2̣p vào m\xf4̣t s\xf4́";
+    } else getElement("#spanASP").innerHTML = "";
+    // Image of product
+    if (!isRequired(imageForm)) {
+        isValid = false;
+        getElement("#spanHinh").innerHTML = "Kh\xf4ng được đ\xeả tr\xf4́ng";
+    } else getElement("#spanHinh").innerHTML = "";
+    // Info of product
+    if (!isRequired(infoForm)) {
+        isValid = false;
+        getElement("#spanInfor").innerHTML = "Kh\xf4ng được đ\xeả tr\xf4́ng";
+    } else getElement("#spanInfor").innerHTML = "";
+    // Type of product
+    if (!isRequired(typeForm)) {
+        isValid = false;
+        getElement("#spanType").innerHTML = "Kh\xf4ng được đ\xeả tr\xf4́ng";
+    } else getElement("#spanType").innerHTML = "";
+    if (isValid) {
+        let product = {
+            name: getElement("#TenSP").value,
+            price: +getElement("#GiaSP").value,
+            screen: +getElement("#ManHinhSP").value,
+            backCamera: +getElement("#CameraBSP").value,
+            frontCamera: +getElement("#CameraASP").value,
+            img: getElement("#HinhSP").value,
+            desc: getElement("#ThongtinSP").value,
+            type: getElement("#loaiSP").value
+        };
+        return product;
     }
+    return isValid;
 }
-// reset form 
+// reset form
 function resetForm() {
+    getElement("#spanName").innerHTML = "";
+    getElement("#spanPrice").innerHTML = "";
+    getElement("#spanScreen").innerHTML = "";
+    getElement("#spanBSP").innerHTML = "";
+    getElement("#spanASP").innerHTML = "";
+    getElement("#spanHinh").innerHTML = "";
+    getElement("#spanInfor").innerHTML = "";
+    getElement("#spanType").innerHTML = "";
     getElement("#TenSP").value = "";
     getElement("#GiaSP").value = "";
     getElement("#ManHinhSP").value = "";
@@ -786,13 +821,47 @@ getElement("#btnThemSP").onclick = ()=>{
     <button class="btn btn-success" id="add">Thêm</button>
       `;
     getElement("#add").onclick = createProduct;
-}; // onclick for delete
- // getElement(".deletePro").onclick = (event) =>{
- //   console.log(event.target)
- // }
- //  getElement(".deletePro").onclick = (event) =>{
- //     console.log(event.target)
- //   }
+};
+// button search name product
+getElement("#basic-addon2").onclick = ()=>{
+    let keyName = getElement("#txtSearch").value;
+    keyName = keyName.trim().toLowerCase();
+    try {
+        _productsAPI.apiGetProducts().then((response)=>{
+            let products = response.data;
+            let newListName = products.filter((value)=>{
+                let nameProducts = value.name.trim().toLowerCase();
+                return nameProducts.includes(keyName);
+            });
+            displayProducts(newListName);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
+// sort product by price
+getElement("#filterByPrice").onchange = (event)=>{
+    function lowHigh(a, b) {
+        // hàm để sử dụng sắp xếp số
+        return a.price - b.price;
+    }
+    function highLow(a, b) {
+        // hàm để sử dụng sắp xếp số
+        return b.price - a.price;
+    }
+    let newListProducts = [];
+    try {
+        _productsAPI.apiGetProducts().then((response)=>{
+            let products = response.data;
+            if (event.target.value === "high") newListProducts = products.sort(highLow);
+            else if (event.target.value === "low") newListProducts = products.sort(lowHigh);
+            else newListProducts = products;
+            displayProducts(newListProducts);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 },{"./../src/services/productsAPI":"6IbPt","../src/models/products":"bFaSR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6IbPt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -5205,14 +5274,14 @@ exports.default = HttpStatusCode;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class Products {
-    constructor(id, name, price, screen, backCamera, frontCamera, image, desc, type){
+    constructor(id, name, price, screen, backCamera, frontCamera, img, desc, type){
         this.id = id;
         this.name = name;
         this.price = price;
         this.screen = screen;
         this.backCamera = backCamera;
         this.frontCamera = frontCamera;
-        this.image = image;
+        this.img = img;
         this.desc = desc;
         this.type = type;
     }
